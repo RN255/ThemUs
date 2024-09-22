@@ -17,3 +17,17 @@ exports.createEntry = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+// Controller function for fetching all entries
+exports.getAllEntries = async (req, res) => {
+  try {
+    // Use Mongoose's find method to retrieve all entries from the database
+    const entries = await Entry.find();
+
+    // Send the retrieved entries as a JSON response
+    res.status(200).json(entries);
+  } catch (error) {
+    // Handle errors and send an error response
+    res.status(500).json({ error: error.message });
+  }
+};

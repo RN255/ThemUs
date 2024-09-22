@@ -1,0 +1,33 @@
+/* general classes  */
+
+.noBullet {
+  list-style: none;
+}
+
+.noPadding {
+  padding: 0;
+}
+
+.noBorderCustomCard {
+  border: none;
+}
+
+.blackText {
+  color: #000000;
+}
+
+.blueText {
+  color: #65afff;
+}
+
+.onePointFiveRem {
+  font-size: 1.5rem;
+}
+
+.lightGreyText {
+  color: #778899;
+}
+
+.zeroPointEightRem {
+  font-size: 0.8rem;
+}

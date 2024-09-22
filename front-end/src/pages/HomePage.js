@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import Form from "react-bootstrap/Form";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-import TopicList from "../components/TopicList";
+import PaginatedTopicList from "../components/PaginatedTopicList";
 
 import axios from "axios";
 
 function HomePage() {
+  const topOfList = useRef();
+
   const [formData, setFormData] = useState({
     topicTitle: "",
     topicDescription: "",
@@ -129,11 +131,7 @@ function HomePage() {
             </Accordion>
           </div>
         </div>
-        <div className="row">
-          <div className="col">
-            <TopicList></TopicList>
-          </div>
-        </div>
+        <PaginatedTopicList topOfList={topOfList}></PaginatedTopicList>
       </div>
 
       <Modal
