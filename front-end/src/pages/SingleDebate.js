@@ -38,6 +38,36 @@ export default function SingleDebate() {
   // spinner logic
   const [dataLoaded, setDataLoaded] = useState(false);
 
+  //logic to submit a comment
+  const [formData, setFormData] = useState({
+    commentText: "",
+    entry: id,
+  });
+
+  // Handler function to update the form data
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const submitCommentToDatabase = (event) => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:5000/api/comments/comments", formData)
+      .then((response) => {
+        console.log("I sent.");
+        // setFormData({
+        //   commentText: "",
+        // });
+      })
+      .catch((error) => {
+        console.log(formData.commentText);
+        console.log(formData.entry);
+        console.log("Did not send.");
+
+      });
+  };
+
   return (
     <>
       {dataLoaded ? (
@@ -79,12 +109,18 @@ export default function SingleDebate() {
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>Add a comment in favour</Accordion.Header>
                   <Accordion.Body>
-                    <Form>
+                    <Form onSubmit={submitCommentToDatabase}>
                       <Form.Group
                         className="mb-3"
                         controlId="exampleForm.ControlTextarea1"
                       >
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Control
+                          as="textarea"
+                          rows={3}
+                          name="commentText"
+                          onChange={handleChange}
+                          value={formData.commentText}
+                        />
                       </Form.Group>
                       <Button variant="primary" type="submit">
                         Submit
