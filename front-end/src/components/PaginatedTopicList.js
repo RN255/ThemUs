@@ -135,7 +135,7 @@ export default function PaginatedJobList(props) {
               <li key={entry._id}>
                 <Card className="my-2 noBorderCustomCard">
                   <Link
-                    to={`/entry/${entry._id}`}
+                    to={`/singleDebate/${entry._id}`}
                     className="text-decoration-none"
                   >
                     <Card.Body className="border-bottom px-0">

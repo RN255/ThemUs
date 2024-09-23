@@ -9,4 +9,7 @@ router.post("/entries", entryController.createEntry);
 // Route for fetching all entries
 router.get("/entries", entryController.getAllEntries);
 
+// Route for fetching a single entry
+router.get("/entries/:id", entryController.getEntryById);
+
 module.exports = router;

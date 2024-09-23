@@ -14,7 +14,7 @@ function App() {
       <NavBar></NavBar>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/singleDebate" element={<SingleDebate />} />
+        <Route path="/singleDebate/:id" element={<SingleDebate />} />
       </Routes>
     </BrowserRouter>
   );
