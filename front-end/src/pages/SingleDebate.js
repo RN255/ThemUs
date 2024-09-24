@@ -11,7 +11,8 @@ import Spinner from "react-bootstrap/Spinner";
 export default function SingleDebate() {
   const { id } = useParams();
   const [entry, setEntry] = useState({});
-  const [comments, setComments] = useState([]);
+  const [forComments, setForComments] = useState([]);
+  const [againstComments, setAgainstComments] = useState([]);
   const navigate = useNavigate();
 
   const goBack = () => {
@@ -36,8 +37,17 @@ export default function SingleDebate() {
     axios
       .get(`http://localhost:5000/api/comments/comments/${id}`)
       .then((response) => {
-        setComments(response.data);
-        // setDataLoaded(true);
+        // Separate comments into "for" and "against"
+        const forComments = response.data.filter(
+          (comment) => comment.type === "support"
+        );
+        const againstComments = response.data.filter(
+          (comment) => comment.type === "oppose"
+        );
+
+        // Set state for both types of comments
+        setForComments(forComments);
+        setAgainstComments(againstComments);
       })
       .catch((error) => {
         console.error(error);
@@ -57,28 +67,29 @@ export default function SingleDebate() {
   const [formData, setFormData] = useState({
     commentText: "",
     entry: id,
+    type: "",
   });
 
   // Handler function to update the form data
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const submitCommentToDatabase = (event) => {
-    event.preventDefault();
+  const submitCommentToDatabase = (e, type) => {
+    e.preventDefault();
+
+    // Set type to either "support" or "oppose" depending on the form
+    const updatedFormData = { ...formData, type };
+
     axios
-      .post("http://localhost:5000/api/comments/comments", formData)
+      .post("http://localhost:5000/api/comments/comments", updatedFormData)
       .then((response) => {
-        console.log("I sent.");
-        // setFormData({
-        //   commentText: "",
-        // });
+        console.log("Comment submitted:", response.data);
+        // Optionally reset the form after submission
+        setFormData({ commentText: "", entry: id, type: "" });
       })
       .catch((error) => {
-        console.log(formData.commentText);
-        console.log(formData.entry);
-        console.log("Did not send.");
+        console.error("Error submitting comment:", error);
       });
   };
 
@@ -123,7 +134,9 @@ export default function SingleDebate() {
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>Add a comment in favour</Accordion.Header>
                   <Accordion.Body>
-                    <Form onSubmit={submitCommentToDatabase}>
+                    <Form
+                      onSubmit={(e) => submitCommentToDatabase(e, "support")}
+                    >
                       <Form.Group
                         className="mb-3"
                         controlId="exampleForm.ControlTextarea1"
@@ -151,12 +164,20 @@ export default function SingleDebate() {
                     Add a comment in opposition
                   </Accordion.Header>
                   <Accordion.Body>
-                    <Form>
+                    <Form
+                      onSubmit={(e) => submitCommentToDatabase(e, "oppose")}
+                    >
                       <Form.Group
                         className="mb-3"
                         controlId="exampleForm.ControlTextarea1"
                       >
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Control
+                          as="textarea"
+                          rows={3}
+                          name="commentText"
+                          onChange={handleChange}
+                          value={formData.commentText}
+                        />
                       </Form.Group>
                       <Button variant="primary" type="submit">
                         Submit
@@ -169,11 +190,22 @@ export default function SingleDebate() {
           </div>
           <div className="row">
             <div className="col">
-              {comments.map((comment) => (
-                <li key={comment._id}>
-                  <p>{comment.commentText}</p>
-                </li>
-              ))}
+              <ul>
+                {forComments.map((comment) => (
+                  <li key={comment._id}>
+                    <p>{comment.commentText}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="col">
+              <ul>
+                {againstComments.map((comment) => (
+                  <li key={comment._id}>
+                    <p>{comment.commentText}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
