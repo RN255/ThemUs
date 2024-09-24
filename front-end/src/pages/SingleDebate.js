@@ -11,18 +11,33 @@ import Spinner from "react-bootstrap/Spinner";
 export default function SingleDebate() {
   const { id } = useParams();
   const [entry, setEntry] = useState({});
+  const [comments, setComments] = useState([]);
   const navigate = useNavigate();
 
   const goBack = () => {
     navigate(-1);
   };
 
+  //  get topic from database
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/entries/entries/${id}`)
       .then((response) => {
         setEntry(response.data);
         setDataLoaded(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [id]);
+
+  //  get comments from database
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/comments/comments/${id}`)
+      .then((response) => {
+        setComments(response.data);
+        // setDataLoaded(true);
       })
       .catch((error) => {
         console.error(error);
@@ -64,7 +79,6 @@ export default function SingleDebate() {
         console.log(formData.commentText);
         console.log(formData.entry);
         console.log("Did not send.");
-
       });
   };
 
@@ -151,6 +165,15 @@ export default function SingleDebate() {
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              {comments.map((comment) => (
+                <li key={comment._id}>
+                  <p>{comment.commentText}</p>
+                </li>
+              ))}
             </div>
           </div>
         </div>
