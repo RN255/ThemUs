@@ -63,30 +63,60 @@ export default function SingleDebate() {
   // spinner logic
   const [dataLoaded, setDataLoaded] = useState(false);
 
-  //logic to submit a comment
-  const [formData, setFormData] = useState({
+  //logic to submit a SUPPORT comment
+  const [supportFormData, setSupportFormData] = useState({
     commentText: "",
     entry: id,
     type: "",
   });
 
   // Handler function to update the form data
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleSupportChange = (e) => {
+    setSupportFormData({ ...supportFormData, [e.target.name]: e.target.value });
   };
 
-  const submitCommentToDatabase = (e, type) => {
+  const submitSupportCommentToDatabase = (e, type) => {
     e.preventDefault();
 
     // Set type to either "support" or "oppose" depending on the form
-    const updatedFormData = { ...formData, type };
+    const updatedFormData = { ...supportFormData, type };
 
     axios
       .post("http://localhost:5000/api/comments/comments", updatedFormData)
       .then((response) => {
         console.log("Comment submitted:", response.data);
         // Optionally reset the form after submission
-        setFormData({ commentText: "", entry: id, type: "" });
+        setSupportFormData({ commentText: "", entry: id, type: "" });
+      })
+      .catch((error) => {
+        console.error("Error submitting comment:", error);
+      });
+  };
+
+  //logic to submit an OPPOSE comment
+  const [opposeFormData, setOpposeFormData] = useState({
+    commentText: "",
+    entry: id,
+    type: "",
+  });
+
+  // Handler function to update the form data
+  const handleOpposeChange = (e) => {
+    setOpposeFormData({ ...opposeFormData, [e.target.name]: e.target.value });
+  };
+
+  const submitOpposeCommentToDatabase = (e, type) => {
+    e.preventDefault();
+
+    // Set type to either "support" or "oppose" depending on the form
+    const updatedFormData = { ...opposeFormData, type };
+
+    axios
+      .post("http://localhost:5000/api/comments/comments", updatedFormData)
+      .then((response) => {
+        console.log("Comment submitted:", response.data);
+        // Optionally reset the form after submission
+        setOpposeFormData({ commentText: "", entry: id, type: "" });
       })
       .catch((error) => {
         console.error("Error submitting comment:", error);
@@ -135,7 +165,9 @@ export default function SingleDebate() {
                   <Accordion.Header>Add a comment in favour</Accordion.Header>
                   <Accordion.Body>
                     <Form
-                      onSubmit={(e) => submitCommentToDatabase(e, "support")}
+                      onSubmit={(e) =>
+                        submitSupportCommentToDatabase(e, "support")
+                      }
                     >
                       <Form.Group
                         className="mb-3"
@@ -145,8 +177,8 @@ export default function SingleDebate() {
                           as="textarea"
                           rows={3}
                           name="commentText"
-                          onChange={handleChange}
-                          value={formData.commentText}
+                          onChange={handleSupportChange}
+                          value={supportFormData.commentText}
                         />
                       </Form.Group>
                       <Button variant="primary" type="submit">
@@ -165,7 +197,9 @@ export default function SingleDebate() {
                   </Accordion.Header>
                   <Accordion.Body>
                     <Form
-                      onSubmit={(e) => submitCommentToDatabase(e, "oppose")}
+                      onSubmit={(e) =>
+                        submitOpposeCommentToDatabase(e, "oppose")
+                      }
                     >
                       <Form.Group
                         className="mb-3"
@@ -175,8 +209,8 @@ export default function SingleDebate() {
                           as="textarea"
                           rows={3}
                           name="commentText"
-                          onChange={handleChange}
-                          value={formData.commentText}
+                          onChange={handleOpposeChange}
+                          value={opposeFormData.commentText}
                         />
                       </Form.Group>
                       <Button variant="primary" type="submit">
