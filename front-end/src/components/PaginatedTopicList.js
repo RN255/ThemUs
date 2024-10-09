@@ -20,8 +20,8 @@ export default function PaginatedJobList(props) {
         // Filter only approved posts
         const sortedData = response.data
 
-          // we are not currently doing this so it's been commented out.
-          //   .filter((post) => post.approved)
+          // remove unapproved topics.
+          .filter((post) => post.approved)
 
           .sort((a, b) => {
             // Sort in descending order by comparing the timestamps.

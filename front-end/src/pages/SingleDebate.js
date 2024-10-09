@@ -39,10 +39,10 @@ export default function SingleDebate() {
       .then((response) => {
         // Separate comments into "for" and "against"
         const forComments = response.data.filter(
-          (comment) => comment.type === "support"
+          (comment) => comment.type === "support" && comment.approved
         );
         const againstComments = response.data.filter(
-          (comment) => comment.type === "oppose"
+          (comment) => comment.type === "oppose" && comment.approved
         );
 
         // Set state for both types of comments
@@ -140,22 +140,6 @@ export default function SingleDebate() {
             </div>
             <div className="col bg-danger mx-1">
               <div>No</div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col mx-1">
-              <ul>
-                <li>First comment</li>
-                <li>Second comment</li>
-                <li>Third comment</li>
-              </ul>
-            </div>
-            <div className="col mx-1">
-              <ul>
-                <li>First comment</li>
-                <li>Second comment</li>
-                <li>Third comment</li>
-              </ul>
             </div>
           </div>
           <div className="row">
