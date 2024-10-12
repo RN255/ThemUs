@@ -129,8 +129,8 @@ export default function SingleDebate() {
         <div className="container">
           <div className="row">
             <div className="col">
-              <p>{entry.topicTitle}</p>
-              <p>{entry.topicDescription}</p>
+              <h1>{entry.topicTitle}</h1>
+              <p className="displayLineBreaks">{entry.topicDescription}</p>
               <p>{formatDate(entry.dateCreated)}</p>
             </div>
           </div>
@@ -208,19 +208,23 @@ export default function SingleDebate() {
           </div>
           <div className="row">
             <div className="col">
-              <ul>
+              <ul className="noBullet noPadding">
                 {forComments.map((comment) => (
-                  <li key={comment._id}>
-                    <p>{comment.commentText}</p>
+                  <li key={comment._id} className="border rounded my-2 p-2">
+                    <p className="displayLineBreaks m-0">
+                      {comment.commentText}
+                    </p>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="col">
-              <ul>
+              <ul className="noBullet noPadding">
                 {againstComments.map((comment) => (
-                  <li key={comment._id}>
-                    <p>{comment.commentText}</p>
+                  <li key={comment._id} className="border rounded my-2 p-2">
+                    <p className="displayLineBreaks m-0">
+                      {comment.commentText}
+                    </p>
                   </li>
                 ))}
               </ul>

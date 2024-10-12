@@ -31,3 +31,7 @@
 .zeroPointEightRem {
   font-size: 0.8rem;
 }
+
+.displayLineBreaks {
+  white-space: pre-line;
+}
