@@ -35,3 +35,23 @@
 .displayLineBreaks {
   white-space: pre-line;
 }
+
+/* Remove background colors on accordion  */
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  box-shadow: none;
+  background-color: transparent;
+}
+
+/* Remove blue outline and box shadow from Bootstrap form elements */
+
+.form-control:focus,
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #ccc;
+}

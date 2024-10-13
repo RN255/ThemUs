@@ -126,23 +126,23 @@ export default function SingleDebate() {
   return (
     <>
       {dataLoaded ? (
-        <div className="container">
+        <div className="container mt-4">
           <div className="row">
             <div className="col">
-              <h1>{entry.topicTitle}</h1>
-              <p className="displayLineBreaks">{entry.topicDescription}</p>
               <p>{formatDate(entry.dateCreated)}</p>
+              <h1>{entry.topicTitle}</h1>
+              <p className="displayLineBreaks mt-4">{entry.topicDescription}</p>
             </div>
           </div>
-          <div className="row">
+          <div className="row mt-4">
             <div className="col bg-primary mx-1">
-              <div>Yes</div>
+              <p className="my-0 py-2 text-white">Yes, I agree</p>
             </div>
             <div className="col bg-danger mx-1">
-              <div>No</div>
+              <p className="my-0 py-2 text-white">No, I disagree</p>
             </div>
           </div>
-          <div className="row">
+          <div className="row mt-2">
             <div className="col mx-1">
               <Accordion flush>
                 <Accordion.Item eventKey="0">
@@ -206,7 +206,7 @@ export default function SingleDebate() {
               </Accordion>
             </div>
           </div>
-          <div className="row">
+          <div className="row mt-4">
             <div className="col">
               <ul className="noBullet noPadding">
                 {forComments.map((comment) => (
