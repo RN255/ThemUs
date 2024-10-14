@@ -38,6 +38,14 @@
 
 /* Remove background colors on accordion  */
 
+.blueBorder {
+  border: #65afff50 1px solid;
+}
+
+.redBorder {
+  border: #ff443350 1px solid;
+}
+
 .accordion-button:focus {
   box-shadow: none;
 }

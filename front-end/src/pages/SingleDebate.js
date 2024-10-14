@@ -135,19 +135,19 @@ export default function SingleDebate() {
             </div>
           </div>
           <div className="row mt-4">
-            <div className="col bg-primary mx-1">
-              <p className="my-0 py-2 text-white">Yes, I agree</p>
+            <div className="col bg-primary mx-2">
+              <p className="my-0 py-2 text-white">I agree</p>
             </div>
-            <div className="col bg-danger mx-1">
-              <p className="my-0 py-2 text-white">No, I disagree</p>
+            <div className="col bg-danger mx-2">
+              <p className="my-0 py-2 text-white">I disagree</p>
             </div>
           </div>
           <div className="row mt-2">
-            <div className="col mx-1">
-              <Accordion flush>
+            <div className="col p-0 mx-2">
+              <Accordion flush className="blueBorder">
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>Add a comment in favour</Accordion.Header>
-                  <Accordion.Body>
+                  <Accordion.Body className="px-1 px-md-4">
                     <Form
                       onSubmit={(e) =>
                         submitSupportCommentToDatabase(e, "support")
@@ -173,13 +173,13 @@ export default function SingleDebate() {
                 </Accordion.Item>
               </Accordion>
             </div>
-            <div className="col mx-1">
-              <Accordion flush>
+            <div className="col p-0 mx-2">
+              <Accordion flush className="redBorder">
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>
                     Add a comment in opposition
                   </Accordion.Header>
-                  <Accordion.Body>
+                  <Accordion.Body className="px-1 px-md-4">
                     <Form
                       onSubmit={(e) =>
                         submitOpposeCommentToDatabase(e, "oppose")
@@ -207,10 +207,10 @@ export default function SingleDebate() {
             </div>
           </div>
           <div className="row mt-4">
-            <div className="col">
+            <div className="col p-0 mx-2">
               <ul className="noBullet noPadding">
                 {forComments.map((comment) => (
-                  <li key={comment._id} className="border rounded my-2 p-2">
+                  <li key={comment._id} className="rounded my-2 p-2 blueBorder">
                     <p className="displayLineBreaks m-0">
                       {comment.commentText}
                     </p>
@@ -218,10 +218,10 @@ export default function SingleDebate() {
                 ))}
               </ul>
             </div>
-            <div className="col">
+            <div className="col p-0 mx-2">
               <ul className="noBullet noPadding">
                 {againstComments.map((comment) => (
-                  <li key={comment._id} className="border rounded my-2 p-2">
+                  <li key={comment._id} className="redBorder rounded my-2 p-2">
                     <p className="displayLineBreaks m-0">
                       {comment.commentText}
                     </p>
