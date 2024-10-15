@@ -139,14 +139,14 @@ export default function PaginatedJobList(props) {
                     className="text-decoration-none"
                   >
                     <Card.Body className="border-bottom px-0">
-                      <Card.Text className="blueText m-0 onePointFiveRem cardTitle mb-2">
+                      <Card.Text className="blueText m-0 onePointFiveRem cardTitle ">
                         {entry.topicTitle}
                       </Card.Text>
 
-                      <Card.Text className="blackText mt-2 mb-0">
+                      <Card.Text className="blackText mb-0">
                         {truncateDescription(entry.topicDescription)}
                       </Card.Text>
-                      <Card.Text className="lightGreyText zeroPointEightRem mt-1 mb-0">
+                      <Card.Text className="lightGreyText zeroPointEightRem mb-0 ">
                         {formatDate(entry.dateCreated)}
                       </Card.Text>
                     </Card.Body>

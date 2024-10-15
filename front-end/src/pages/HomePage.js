@@ -75,7 +75,7 @@ function HomePage() {
       <div className="container">
         <div className="row">
           <div className="col">
-            <Accordion flush>
+            <Accordion flush className="my-4 greenBorder ">
               <Accordion.Item eventKey="0">
                 <Accordion.Header>
                   Suggest a new discussion topic
@@ -91,7 +91,7 @@ function HomePage() {
                       className="mb-3"
                       controlId="exampleForm.ControlInput1"
                     >
-                      <Form.Label>Main question</Form.Label>
+                      <Form.Label>Main proposition</Form.Label>
                       <Form.Control
                         required
                         type="text"

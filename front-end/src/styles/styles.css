@@ -17,11 +17,19 @@
 }
 
 .blueText {
-  color: #65afff;
+  color: #86abd4;
 }
+
+/* .blueText {
+  color: #65afff;
+} */
 
 .onePointFiveRem {
   font-size: 1.5rem;
+}
+
+.heightOneRem {
+  height: 1rem;
 }
 
 .lightGreyText {
@@ -39,7 +47,7 @@
 /* Remove background colors on accordion  */
 
 .blueBorder {
-  border: #65afff50 1px solid;
+  border: #86abd450 1px solid;
 }
 
 .redBorder {
@@ -62,4 +70,30 @@
   outline: none;
   box-shadow: none;
   border-color: #ccc;
+}
+
+.greenBorder {
+  border: #2477bf50 1px solid;
+}
+
+.pagination .page-item:not(.active) .page-link {
+  color: #65afff !important;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #2477bf !important;
+  border: #2477bf 1px solid !important;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #2477bf !important;
+  border: #2477bf 1px solid !important;
+}
+
+.backButtonHover:hover {
+  text-decoration: underline !important;
+  color: #000000 !important;
 }

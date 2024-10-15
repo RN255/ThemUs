@@ -8,6 +8,8 @@ import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 
+import leftArrow from "../assets/left-arrow-icon.png";
+
 export default function SingleDebate() {
   const { id } = useParams();
   const [entry, setEntry] = useState({});
@@ -127,6 +129,24 @@ export default function SingleDebate() {
     <>
       {dataLoaded ? (
         <div className="container mt-4">
+          <div className="row">
+            <div className="col">
+              <Button
+                variant="link"
+                className="text-decoration-none blackText mb-2 ps-0 py-1 backButtonHover"
+                onClick={goBack}
+              >
+                <p className="d-flex align-items-center m-0">
+                  <img
+                    src={leftArrow}
+                    alt="back angle icon"
+                    className="heightOneRem p-0 me-1"
+                  />
+                  Back
+                </p>
+              </Button>
+            </div>
+          </div>
           <div className="row">
             <div className="col">
               <p>{formatDate(entry.dateCreated)}</p>
