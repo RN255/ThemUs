@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import Form from "react-bootstrap/Form";
 import Accordion from "react-bootstrap/Accordion";
@@ -69,6 +69,21 @@ function HomePage() {
       });
     handleClosePreview();
   };
+
+  useEffect(() => {
+    // Check if a scroll position is saved in sessionStorage
+    const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+
+    // If a scroll position is found, scroll to that position
+    if (savedScrollPosition !== null) {
+      window.scrollTo(0, parseInt(savedScrollPosition, 10));
+    }
+
+    // Optional: Cleanup by removing the scroll position from sessionStorage after using it
+    // return () => {
+    //   sessionStorage.removeItem('scrollPosition');
+    // };
+  }, []);
 
   return (
     <div className="container-fluid">

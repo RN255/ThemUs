@@ -30,6 +30,16 @@ export default function PaginatedJobList(props) {
 
         setData(sortedData);
         setDataLoaded(true);
+        // Check if a scroll position is saved in sessionStorage
+        const savedScrollPosition = sessionStorage.getItem("scrollPosition");
+
+        // If a scroll position is found, scroll to that position
+        if (savedScrollPosition !== null) {
+          window.scrollTo({
+            top: parseInt(savedScrollPosition, 10),
+            behavior: "instant",
+          });
+        }
 
         // console.log(response.data);
       })
@@ -137,6 +147,9 @@ export default function PaginatedJobList(props) {
                   <Link
                     to={`/singleDebate/${entry._id}`}
                     className="text-decoration-none"
+                    onClick={() =>
+                      sessionStorage.setItem("scrollPosition", window.scrollY)
+                    }
                   >
                     <Card.Body className="border-bottom px-0">
                       <Card.Text className="blueText m-0 onePointFiveRem cardTitle ">
