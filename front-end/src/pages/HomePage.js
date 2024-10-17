@@ -70,21 +70,6 @@ function HomePage() {
     handleClosePreview();
   };
 
-  useEffect(() => {
-    // Check if a scroll position is saved in sessionStorage
-    const savedScrollPosition = sessionStorage.getItem('scrollPosition');
-
-    // If a scroll position is found, scroll to that position
-    if (savedScrollPosition !== null) {
-      window.scrollTo(0, parseInt(savedScrollPosition, 10));
-    }
-
-    // Optional: Cleanup by removing the scroll position from sessionStorage after using it
-    // return () => {
-    //   sessionStorage.removeItem('scrollPosition');
-    // };
-  }, []);
-
   return (
     <div className="container-fluid">
       <div className="container">

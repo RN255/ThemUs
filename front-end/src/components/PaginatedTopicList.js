@@ -30,16 +30,9 @@ export default function PaginatedJobList(props) {
 
         setData(sortedData);
         setDataLoaded(true);
-        // Check if a scroll position is saved in sessionStorage
-        const savedScrollPosition = sessionStorage.getItem("scrollPosition");
 
-        // If a scroll position is found, scroll to that position
-        if (savedScrollPosition !== null) {
-          window.scrollTo({
-            top: parseInt(savedScrollPosition, 10),
-            behavior: "instant",
-          });
-        }
+        const homePageElement = document.querySelector(".minListHeight");
+        homePageElement.style.minHeight = `0px`;
 
         // console.log(response.data);
       })
@@ -107,7 +100,7 @@ export default function PaginatedJobList(props) {
   }
 
   return (
-    <div className={`row ${totalPages === currentPage ? "" : "minListHeight"}`}>
+    <div className="row minListHeight">
       {dataLoaded ? (
         <div className="col fadeIn">
           <div>
@@ -230,7 +223,7 @@ export default function PaginatedJobList(props) {
             >
               Next Page
             </Button>
-            <Button
+            {/* <Button
               className="me-1 mb-1"
               onClick={() => {
                 handlePageChange(1);
@@ -244,7 +237,7 @@ export default function PaginatedJobList(props) {
               disabled={currentPage === 1}
             >
               Return to page one
-            </Button>
+            </Button> */}
           </div>
         </div>
       ) : (
