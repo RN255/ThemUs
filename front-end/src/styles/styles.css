@@ -29,6 +29,16 @@ html {
   color: #65afff;
 } */
 
+.blueBackground {
+  /* background-color: #0000ff; */
+  border-bottom: #0000ff75 2px solid;
+}
+
+.redBackground {
+  /* background-color: #ff0000; */
+  border-bottom: #ff000075 2px solid;
+}
+
 .onePointFiveRem {
   font-size: 1.5rem;
 }
@@ -52,11 +62,11 @@ html {
 /* Remove background colors on accordion  */
 
 .blueBorder {
-  border: #86abd450 1px solid;
+  border: #0000ff25 1px solid;
 }
 
 .redBorder {
-  border: #ff443350 1px solid;
+  border: #ff000025 1px solid;
 }
 
 .accordion-button:focus {
@@ -105,4 +115,14 @@ html {
 
 .minListHeight {
   min-height: 2000px;
+}
+
+.modal-90w {
+  width: 90%;
+  max-width: 90%;
+}
+
+body.modal-open {
+  padding-right: 0px !important;
+  margin-right: 0px !important;
 }

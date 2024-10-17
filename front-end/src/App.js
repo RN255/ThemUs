@@ -7,16 +7,22 @@ import HomePage from "./pages/HomePage";
 
 import "./styles/styles.css";
 import SingleDebate from "./pages/SingleDebate";
+import Footer from "./components/Footer";
+import Info from "./pages/Info";
 
 function App() {
   return (
-    <BrowserRouter>
-      <NavBar></NavBar>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/singleDebate/:id" element={<SingleDebate />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <NavBar></NavBar>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/singleDebate/:id" element={<SingleDebate />} />
+          <Route path="/info" element={<Info />} />
+        </Routes>
+      </BrowserRouter>
+      <Footer></Footer>
+    </>
   );
 }
 

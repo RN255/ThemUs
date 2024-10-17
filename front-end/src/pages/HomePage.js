@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 
 import Form from "react-bootstrap/Form";
 import Accordion from "react-bootstrap/Accordion";
@@ -71,7 +71,7 @@ function HomePage() {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid mb-5">
       <div className="container">
         <div className="row">
           <div className="col">
@@ -137,7 +137,6 @@ function HomePage() {
       <Modal
         show={showPreview}
         onHide={handleClosePreview}
-        backdrop="static"
         keyboard={false}
         animation={false}
         dialogClassName="modal-90w"

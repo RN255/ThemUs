@@ -128,7 +128,7 @@ export default function SingleDebate() {
   return (
     <>
       {dataLoaded ? (
-        <div className="container mt-4">
+        <div className="container mt-4 mb-5">
           <div className="row">
             <div className="col">
               <Button
@@ -155,11 +155,11 @@ export default function SingleDebate() {
             </div>
           </div>
           <div className="row mt-4">
-            <div className="col bg-primary mx-2">
-              <p className="my-0 py-2 text-white">I agree</p>
+            <div className="col mx-2 blueBackground">
+              <p className="my-0 py-2">For</p>
             </div>
-            <div className="col bg-danger mx-2">
-              <p className="my-0 py-2 text-white">I disagree</p>
+            <div className="col mx-2 redBackground">
+              <p className="my-0 py-2">Against</p>
             </div>
           </div>
           <div className="row mt-2">
