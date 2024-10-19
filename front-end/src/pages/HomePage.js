@@ -111,7 +111,7 @@ function HomePage() {
                       <Form.Control
                         required
                         as="textarea"
-                        style={{ height: "100px" }}
+                        style={{ height: "200px" }}
                         name="topicDescription"
                         value={formData.topicDescription}
                         onChange={handleChange}
@@ -144,21 +144,18 @@ function HomePage() {
         <Modal.Header closeButton>
           <Modal.Title>
             <p className="m-1">Please review</p>
-            <p className="m-1 text-secondary oneRem">
-              This is how your advert will appear on the website
-            </p>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="container">
             <div className="row">
               <div className="col">
-                <h2 className="blueText p-0 mx-0 mt-2 mb-2">
+                <h2 className="blueText p-0 mx-0 mt-2 mb-4">
                   {formData.topicTitle}
                 </h2>
-                <h3 className="m-0 onePointTwoRem normalWeight d-flex align-items-center">
+                <p className="m-0 mb-4 onePointTwoRem normalWeight d-flex align-items-center displayLineBreaks">
                   {formData.topicDescription}
-                </h3>
+                </p>
               </div>
             </div>
           </div>
@@ -176,7 +173,7 @@ function HomePage() {
           <Modal.Title>Thank you</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Your job will be checked and then posted online.
+          Your topic suggestion is in review.
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={handleClose}>Close</Button>
