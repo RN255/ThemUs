@@ -75,7 +75,23 @@ function HomePage() {
       <div className="container">
         <div className="row">
           <div className="col">
-            <Accordion flush className="my-4 greenBorder ">
+            <Accordion flush className="my-4 purpleBorder ">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Latest news about ThemUs</Accordion.Header>
+                <Accordion.Body>
+                  <ul>
+                    <li>The website had been launched.</li>
+                    <li>Discussion topics are "agree" and "disagree".</li>
+                    <li>Sorry if things are slow.</li>
+                  </ul>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <Accordion flush className="mb-4 greenBorder ">
               <Accordion.Item eventKey="0">
                 <Accordion.Header>
                   Suggest a new discussion topic
@@ -102,6 +118,11 @@ function HomePage() {
                           formData.topicTitle.length > 150 ? "is-invalid" : ""
                         }
                       />
+                      <Form.Text className="text-muted">
+                        Propositions should allow for an "agree" or "disagree"
+                        debate. Eg. Cannabis should be legalized. Climate change
+                        is not real...
+                      </Form.Text>
                     </Form.Group>
                     <Form.Group
                       className="mb-3"
@@ -116,11 +137,14 @@ function HomePage() {
                         value={formData.topicDescription}
                         onChange={handleChange}
                         className={
-                          formData.topicDescription.length > 500
+                          formData.topicDescription.length > 3000
                             ? "is-invalid"
                             : ""
                         }
                       />
+                      <Form.Text className="text-muted">
+                        Limit: 3000 characters
+                      </Form.Text>
                     </Form.Group>
                     <Button variant="primary" type="submit">
                       Submit
@@ -137,9 +161,9 @@ function HomePage() {
       <Modal
         show={showPreview}
         onHide={handleClosePreview}
-        keyboard={false}
         animation={false}
-        dialogClassName="modal-90w"
+        // dialogClassName="modal-80w"
+        size="lg"
       >
         <Modal.Header closeButton>
           <Modal.Title>
@@ -172,9 +196,7 @@ function HomePage() {
         <Modal.Header closeButton>
           <Modal.Title>Thank you</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          Your topic suggestion is in review.
-        </Modal.Body>
+        <Modal.Body>Your topic suggestion is in review.</Modal.Body>
         <Modal.Footer>
           <Button onClick={handleClose}>Close</Button>
         </Modal.Footer>

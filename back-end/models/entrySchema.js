@@ -10,7 +10,7 @@ const entrySchema = new mongoose.Schema({
   topicDescription: {
     type: String,
     required: true,
-    maxlength: 500,
+    maxlength: 3000,
   },
   dateCreated: {
     type: Date,

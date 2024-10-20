@@ -69,6 +69,10 @@ html {
   border: #ff000025 1px solid;
 }
 
+.purpleBorder {
+  border: #ec00b825 1px solid;
+}
+
 .accordion-button:focus {
   box-shadow: none;
 }
@@ -118,12 +122,11 @@ html {
 }
 
 .modal-90w {
-  width: 90%;
-  max-width: 90%;
+  width: 80%;
+  max-width: 80%;
 }
 
 body.modal-open {
   padding-right: 0px !important;
   margin-right: 0px !important;
 }
-

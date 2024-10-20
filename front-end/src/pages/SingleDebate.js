@@ -16,6 +16,10 @@ export default function SingleDebate() {
   const [forComments, setForComments] = useState([]);
   const [againstComments, setAgainstComments] = useState([]);
   const navigate = useNavigate();
+  const [showMessageFor, setShowMessageFor] = useState(false);
+  const [showMessageAgainst, setShowMessageAgainst] = useState(false);
+  const [validatedFor, setValidatedFor] = useState(false);
+  const [validatedAgainst, setValidatedAgainst] = useState(false);
 
   const goBack = () => {
     navigate(-1);
@@ -78,21 +82,33 @@ export default function SingleDebate() {
   };
 
   const submitSupportCommentToDatabase = (e, type) => {
-    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      setValidatedFor(true);
+    } else {
+      e.preventDefault();
+      // Set type to either "support" or "oppose" depending on the form
+      const updatedFormData = { ...supportFormData, type };
 
-    // Set type to either "support" or "oppose" depending on the form
-    const updatedFormData = { ...supportFormData, type };
+      axios
+        .post("http://localhost:5000/api/comments/comments", updatedFormData)
+        .then((response) => {
+          console.log("Comment submitted:", response.data);
+          // Optionally reset the form after submission
+          setSupportFormData({ commentText: "", entry: id, type: "" });
+          setValidatedFor(false);
+        })
+        .catch((error) => {
+          console.error("Error submitting comment:", error);
+        });
 
-    axios
-      .post("http://localhost:5000/api/comments/comments", updatedFormData)
-      .then((response) => {
-        console.log("Comment submitted:", response.data);
-        // Optionally reset the form after submission
-        setSupportFormData({ commentText: "", entry: id, type: "" });
-      })
-      .catch((error) => {
-        console.error("Error submitting comment:", error);
-      });
+      setShowMessageFor(true); // Show the message when submitted
+    }
+
+    // Hide the message after 3 seconds
+    setTimeout(() => setShowMessageFor(false), 3000);
   };
 
   //logic to submit an OPPOSE comment
@@ -108,21 +124,34 @@ export default function SingleDebate() {
   };
 
   const submitOpposeCommentToDatabase = (e, type) => {
-    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      setValidatedAgainst(true);
+    } else {
+      e.preventDefault();
 
-    // Set type to either "support" or "oppose" depending on the form
-    const updatedFormData = { ...opposeFormData, type };
+      // Set type to either "support" or "oppose" depending on the form
+      const updatedFormData = { ...opposeFormData, type };
 
-    axios
-      .post("http://localhost:5000/api/comments/comments", updatedFormData)
-      .then((response) => {
-        console.log("Comment submitted:", response.data);
-        // Optionally reset the form after submission
-        setOpposeFormData({ commentText: "", entry: id, type: "" });
-      })
-      .catch((error) => {
-        console.error("Error submitting comment:", error);
-      });
+      axios
+        .post("http://localhost:5000/api/comments/comments", updatedFormData)
+        .then((response) => {
+          console.log("Comment submitted:", response.data);
+          // Optionally reset the form after submission
+          setOpposeFormData({ commentText: "", entry: id, type: "" });
+          setValidatedAgainst(false);
+        })
+        .catch((error) => {
+          console.error("Error submitting comment:", error);
+        });
+
+      setShowMessageAgainst(true); // Show the message when submitted
+    }
+
+    // Hide the message after 3 seconds
+    setTimeout(() => setShowMessageAgainst(false), 3000);
   };
 
   return (
@@ -159,7 +188,7 @@ export default function SingleDebate() {
               <p className="my-0 py-2">For</p>
             </div>
             <div className="col mx-2 redBackground">
-              <p className="my-0 py-2">Against</p>
+              <p className="my-0 py-2">Disagree</p>
             </div>
           </div>
           <div className="row mt-2">
@@ -169,6 +198,8 @@ export default function SingleDebate() {
                   <Accordion.Header>Add a comment in favour</Accordion.Header>
                   <Accordion.Body className="px-1 px-md-4">
                     <Form
+                      noValidate
+                      validated={validatedFor}
                       onSubmit={(e) =>
                         submitSupportCommentToDatabase(e, "support")
                       }
@@ -178,12 +209,18 @@ export default function SingleDebate() {
                         controlId="exampleForm.ControlTextarea1"
                       >
                         <Form.Control
+                          required
                           as="textarea"
                           rows={3}
                           name="commentText"
                           onChange={handleSupportChange}
                           value={supportFormData.commentText}
                         />
+                        {showMessageFor && (
+                          <Form.Text className="text-muted">
+                            comment submitted
+                          </Form.Text>
+                        )}
                       </Form.Group>
                       <Button variant="primary" type="submit">
                         Submit
@@ -201,6 +238,8 @@ export default function SingleDebate() {
                   </Accordion.Header>
                   <Accordion.Body className="px-1 px-md-4">
                     <Form
+                      noValidate
+                      validated={validatedAgainst}
                       onSubmit={(e) =>
                         submitOpposeCommentToDatabase(e, "oppose")
                       }
@@ -210,12 +249,18 @@ export default function SingleDebate() {
                         controlId="exampleForm.ControlTextarea1"
                       >
                         <Form.Control
+                          required
                           as="textarea"
                           rows={3}
                           name="commentText"
                           onChange={handleOpposeChange}
                           value={opposeFormData.commentText}
                         />
+                        {showMessageAgainst && (
+                          <Form.Text className="text-muted">
+                            comment submitted
+                          </Form.Text>
+                        )}
                       </Form.Group>
                       <Button variant="primary" type="submit">
                         Submit
