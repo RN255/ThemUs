@@ -56,6 +56,7 @@ function HomePage() {
     axios
       .post("http://localhost:5000/api/entries/entries", formData)
       .then((response) => {
+        console.log("Comment submitted:", response.data);
         setFormData({
           topicTitle: "",
           topicDescription: "",
@@ -81,7 +82,6 @@ function HomePage() {
                 <Accordion.Body>
                   <ul>
                     <li>The website had been launched.</li>
-                    <li>Discussion topics are "agree" and "disagree".</li>
                     <li>Sorry if things are slow.</li>
                   </ul>
                 </Accordion.Body>
@@ -118,11 +118,11 @@ function HomePage() {
                           formData.topicTitle.length > 150 ? "is-invalid" : ""
                         }
                       />
-                      <Form.Text className="text-muted">
+                      {/* <Form.Text className="text-muted">
                         Propositions should allow for an "agree" or "disagree"
                         debate. Eg. Cannabis should be legalized. Climate change
                         is not real...
-                      </Form.Text>
+                      </Form.Text> */}
                     </Form.Group>
                     <Form.Group
                       className="mb-3"

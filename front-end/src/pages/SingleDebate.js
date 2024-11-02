@@ -99,12 +99,11 @@ export default function SingleDebate() {
           // Optionally reset the form after submission
           setSupportFormData({ commentText: "", entry: id, type: "" });
           setValidatedFor(false);
+          setShowMessageFor(true); // Show the message when submitted
         })
         .catch((error) => {
           console.error("Error submitting comment:", error);
         });
-
-      setShowMessageFor(true); // Show the message when submitted
     }
 
     // Hide the message after 3 seconds
@@ -142,12 +141,11 @@ export default function SingleDebate() {
           // Optionally reset the form after submission
           setOpposeFormData({ commentText: "", entry: id, type: "" });
           setValidatedAgainst(false);
+          setShowMessageAgainst(true); // Show the message when submitted
         })
         .catch((error) => {
           console.error("Error submitting comment:", error);
         });
-
-      setShowMessageAgainst(true); // Show the message when submitted
     }
 
     // Hide the message after 3 seconds
@@ -185,17 +183,17 @@ export default function SingleDebate() {
           </div>
           <div className="row mt-4">
             <div className="col mx-2 blueBackground">
-              <p className="my-0 py-2">For</p>
+              <p className="my-0 py-2">Acknowledge</p>
             </div>
             <div className="col mx-2 redBackground">
-              <p className="my-0 py-2">Disagree</p>
+              <p className="my-0 py-2">Dissent</p>
             </div>
           </div>
           <div className="row mt-2">
             <div className="col p-0 mx-2">
               <Accordion flush className="blueBorder">
                 <Accordion.Item eventKey="0">
-                  <Accordion.Header>Add a comment in favour</Accordion.Header>
+                  <Accordion.Header>Add a supporting comment</Accordion.Header>
                   <Accordion.Body className="px-1 px-md-4">
                     <Form
                       noValidate
@@ -215,6 +213,11 @@ export default function SingleDebate() {
                           name="commentText"
                           onChange={handleSupportChange}
                           value={supportFormData.commentText}
+                          className={
+                            supportFormData.commentText.length > 3000
+                              ? "is-invalid"
+                              : ""
+                          }
                         />
                         {showMessageFor && (
                           <Form.Text className="text-muted">
@@ -233,9 +236,7 @@ export default function SingleDebate() {
             <div className="col p-0 mx-2">
               <Accordion flush className="redBorder">
                 <Accordion.Item eventKey="0">
-                  <Accordion.Header>
-                    Add a comment in opposition
-                  </Accordion.Header>
+                  <Accordion.Header>Add a critical comment</Accordion.Header>
                   <Accordion.Body className="px-1 px-md-4">
                     <Form
                       noValidate
@@ -255,6 +256,11 @@ export default function SingleDebate() {
                           name="commentText"
                           onChange={handleOpposeChange}
                           value={opposeFormData.commentText}
+                          className={
+                            opposeFormData.commentText.length > 3000
+                              ? "is-invalid"
+                              : ""
+                          }
                         />
                         {showMessageAgainst && (
                           <Form.Text className="text-muted">
@@ -275,8 +281,8 @@ export default function SingleDebate() {
             <div className="col p-0 mx-2">
               <ul className="noBullet noPadding">
                 {forComments.map((comment) => (
-                  <li key={comment._id} className="rounded my-2 p-2 blueBorder">
-                    <p className="displayLineBreaks m-0">
+                  <li key={comment._id} className="rounded my-3 p-2 blueBorder">
+                    <p className="displayLineBreaks mx-0 mx-sm-2 my-2">
                       {comment.commentText}
                     </p>
                   </li>
@@ -286,8 +292,8 @@ export default function SingleDebate() {
             <div className="col p-0 mx-2">
               <ul className="noBullet noPadding">
                 {againstComments.map((comment) => (
-                  <li key={comment._id} className="redBorder rounded my-2 p-2">
-                    <p className="displayLineBreaks m-0">
+                  <li key={comment._id} className="redBorder rounded my-3 p-2">
+                    <p className="displayLineBreaks mx-0 mx-sm-2 my-2">
                       {comment.commentText}
                     </p>
                   </li>

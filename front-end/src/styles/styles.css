@@ -59,6 +59,10 @@ html {
   white-space: pre-line;
 }
 
+.standardColorBackground {
+  background-color: #86abd4;
+}
+
 /* Remove background colors on accordion  */
 
 .blueBorder {
