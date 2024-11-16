@@ -15,7 +15,7 @@ export default function PaginatedJobList(props) {
     setCurrentPage(storedPage ? parseInt(storedPage, 10) : 1);
 
     axios
-      .get("http://localhost:5000/api/entries/entries")
+      .get("https://themus.onrender.com/api/entries/entries")
       .then((response) => {
         // Filter only approved posts
         const sortedData = response.data

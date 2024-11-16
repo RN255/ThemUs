@@ -54,7 +54,7 @@ function HomePage() {
 
   const submitDataToDatabase = () => {
     axios
-      .post("http://localhost:5000/api/entries/entries", formData)
+      .post("https://themus.onrender.com/api/entries/entries", formData)
       .then((response) => {
         console.log("Comment submitted:", response.data);
         setFormData({
@@ -83,6 +83,7 @@ function HomePage() {
                   <ul>
                     <li>The website had been launched.</li>
                     <li>Sorry if things are slow.</li>
+                    <li>Sorry if not all topics or comments are accepted.</li>
                   </ul>
                 </Accordion.Body>
               </Accordion.Item>

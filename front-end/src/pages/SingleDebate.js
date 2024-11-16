@@ -28,7 +28,7 @@ export default function SingleDebate() {
   //  get topic from database
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/entries/entries/${id}`)
+      .get(`https://themus.onrender.com/api/entries/entries/${id}`)
       .then((response) => {
         setEntry(response.data);
         setDataLoaded(true);
@@ -41,7 +41,7 @@ export default function SingleDebate() {
   //  get comments from database
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/comments/comments/${id}`)
+      .get(`https://themus.onrender.com/api/comments/comments/${id}`)
       .then((response) => {
         // Separate comments into "for" and "against"
         const forComments = response.data.filter(
@@ -93,7 +93,10 @@ export default function SingleDebate() {
       const updatedFormData = { ...supportFormData, type };
 
       axios
-        .post("http://localhost:5000/api/comments/comments", updatedFormData)
+        .post(
+          "https://themus.onrender.com/api/comments/comments",
+          updatedFormData
+        )
         .then((response) => {
           console.log("Comment submitted:", response.data);
           // Optionally reset the form after submission
@@ -135,7 +138,10 @@ export default function SingleDebate() {
       const updatedFormData = { ...opposeFormData, type };
 
       axios
-        .post("http://localhost:5000/api/comments/comments", updatedFormData)
+        .post(
+          "https://themus.onrender.com/api/comments/comments",
+          updatedFormData
+        )
         .then((response) => {
           console.log("Comment submitted:", response.data);
           // Optionally reset the form after submission
