@@ -8,6 +8,7 @@ const entryRoutes = require("./routes/entryRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const port = process.env.PORT;
 const dbURI = process.env.MONGODB_URI;
+const rssRoutes = require("./rssFeeds/rssFeedOne");
 
 // Connect to your MongoDB database
 mongoose.connect(dbURI, {
@@ -42,3 +43,6 @@ app.listen(port, () => {
 app.get("/api/hello", (req, res) => {
   res.json({ message: "Hello from the server!" });
 });
+
+// rss route one
+app.use("/rss", rssRoutes);

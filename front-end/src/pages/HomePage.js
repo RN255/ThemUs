@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import PaginatedTopicList from "../components/PaginatedTopicList";
 
 import axios from "axios";
+import RssFeedSample from "../components/RssFeedSample";
 
 function HomePage() {
   const topOfList = useRef();
@@ -157,6 +158,7 @@ function HomePage() {
           </div>
         </div>
         <PaginatedTopicList topOfList={topOfList}></PaginatedTopicList>
+        <RssFeedSample></RssFeedSample>
       </div>
 
       <Modal
