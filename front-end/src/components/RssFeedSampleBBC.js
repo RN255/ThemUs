@@ -7,41 +7,44 @@ export default function RssFeedSample() {
   useEffect(() => {
     async function fetchRSS() {
       try {
-        const response = await fetch("http://localhost:5000/rss/bbcnews"); // Adjust URL for production
-        const text = await response.text(); // RSS is in XML format
+        const response = await fetch("http://localhost:5000/rss/bbcnews");
+        const text = await response.text();
         const parser = new DOMParser();
         const xml = parser.parseFromString(text, "text/xml");
 
-        // Parse the XML and extract the items
         const itemsArray = Array.from(xml.querySelectorAll("item")).map(
           (item) => {
-            // Extract description with CDATA
-            const description = item.querySelector("description").textContent;
+            const title =
+              item.querySelector("title")?.textContent || "No Title";
+            const link = item.querySelector("link")?.textContent || "#";
+            const description =
+              item.querySelector("description")?.textContent || "";
 
-            // Parse the description as HTML to find an <img> tag
-            const descriptionParser = new DOMParser();
-            const descriptionDoc = descriptionParser.parseFromString(
-              description,
-              "text/html"
-            );
-            const imageUrl = descriptionDoc.querySelector("img")
-              ? descriptionDoc.querySelector("img").getAttribute("src")
-              : null; // Get image from <img> tag inside description if available
+            // **Correctly get the thumbnail from the media:thumbnail tag:**
+            const mediaThumbnail = item.getElementsByTagNameNS(
+              "*",
+              "thumbnail"
+            )[0];
+            const imageUrl = mediaThumbnail
+              ? mediaThumbnail.getAttribute("url")
+              : null;
+
+            console.log("Extracted Image URL:", imageUrl); // Debugging output
 
             return {
-              title: item.querySelector("title").textContent,
-              link: item.querySelector("link").textContent,
-              description: description, // Keep the raw description (HTML)
-              image: imageUrl, // Will be null if no image is found
+              title,
+              link,
+              description,
+              image: imageUrl,
             };
           }
         );
 
-        setItems(itemsArray); // Set the items to state
+        setItems(itemsArray);
       } catch (error) {
         console.error("Error fetching RSS feed:", error);
       } finally {
-        setLoading(false); // Set loading to false once done
+        setLoading(false);
       }
     }
 

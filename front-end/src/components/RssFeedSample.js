@@ -59,7 +59,7 @@ export default function RssFeedSample() {
         <p>No items available.</p>
       ) : (
         items.map((item, index) => (
-          <div key={index} className="rss-item">
+          <div key={index} className="rss-item mb-5">
             <h3>
               <a href={item.link} target="_blank" rel="noopener noreferrer">
                 {item.image && (
@@ -67,14 +67,14 @@ export default function RssFeedSample() {
                     src={item.image}
                     alt={item.title}
                     style={{
-                      width: "25%",
-                      maxHeight: "300px",
+                      width: "100%",
+                      maxHeight: "200px",
                       objectFit: "cover",
                     }}
                   />
-                )}
+                )}{" "}
+                <p className="onePointTwoRem">{item.title}</p>
               </a>
-              <p>{item.title}</p>
             </h3>
             {/* <div
               dangerouslySetInnerHTML={{
