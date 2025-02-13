@@ -7,7 +7,7 @@ export default function RssFeedSample() {
   useEffect(() => {
     async function fetchRSS() {
       try {
-        const response = await fetch("http://localhost:5000/rss/gbnews"); // Adjust URL for production
+        const response = await fetch("http://localhost:5000/rss/bbcnews"); // Adjust URL for production
         const text = await response.text(); // RSS is in XML format
         const parser = new DOMParser();
         const xml = parser.parseFromString(text, "text/xml");

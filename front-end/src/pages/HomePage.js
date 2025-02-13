@@ -9,6 +9,7 @@ import PaginatedTopicList from "../components/PaginatedTopicList";
 
 import axios from "axios";
 import RssFeedSample from "../components/RssFeedSample";
+import RssFeedSampleBBC from "../components/RssFeedSampleBBC";
 
 function HomePage() {
   const topOfList = useRef();
@@ -158,7 +159,26 @@ function HomePage() {
           </div>
         </div>
         <PaginatedTopicList topOfList={topOfList}></PaginatedTopicList>
-        <RssFeedSample></RssFeedSample>
+      </div>
+
+      <div className="container-fluid border">
+        <div className="row">
+          <div className="col">
+            <RssFeedSample></RssFeedSample>
+          </div>
+          <div className="col">
+            <RssFeedSampleBBC></RssFeedSampleBBC>
+          </div>
+          <div className="col">
+            <RssFeedSample></RssFeedSample>
+          </div>
+          <div className="col">
+            <RssFeedSample></RssFeedSample>
+          </div>
+          <div className="col">
+            <RssFeedSample></RssFeedSample>
+          </div>
+        </div>
       </div>
 
       <Modal
