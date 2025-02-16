@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 import PaginatedTopicList from "../components/PaginatedTopicList";
+import NewsDisplay from "../components/NewsDisplay";
 
 import axios from "axios";
 
@@ -159,6 +160,8 @@ function HomePage() {
         <PaginatedTopicList topOfList={topOfList}></PaginatedTopicList>
       </div>
 
+      <NewsDisplay></NewsDisplay>
+  
       <Modal
         show={showPreview}
         onHide={handleClosePreview}
