@@ -7,7 +7,7 @@ function ColorSchemesExample() {
     <>
       <Navbar className="standardColorBackground" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="/">ThemUs</Navbar.Brand>
+          <Navbar.Brand href="/">ThemUsNews</Navbar.Brand>
           <Nav>
             <Nav.Link href="/info">Info</Nav.Link>
             {/* <Nav.Link href="#features">Features</Nav.Link> */}
