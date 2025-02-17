@@ -74,6 +74,8 @@ function HomePage() {
 
   return (
     <div className="container-fluid mb-5">
+      <NewsDisplay></NewsDisplay>
+
       <div className="container">
         <div className="row">
           <div className="col">
@@ -160,8 +162,6 @@ function HomePage() {
         <PaginatedTopicList topOfList={topOfList}></PaginatedTopicList>
       </div>
 
-      <NewsDisplay></NewsDisplay>
-  
       <Modal
         show={showPreview}
         onHide={handleClosePreview}

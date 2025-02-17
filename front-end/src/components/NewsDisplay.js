@@ -18,9 +18,11 @@ function NewsList() {
   }, []);
 
   const categorizedNews = {
-    SkyNews: news.filter((article) => article.source === "SkyNews"),
-    BBC: news.filter((article) => article.source === "BBC"),
-    GBNews: news.filter((article) => article.source === "GBNews"),
+    Left: news.filter((article) => article.source === "Guardian"),
+    Centre: news.filter((article) =>
+      ["BBC", "SkyNews"].includes(article.source)
+    ),
+    Right: news.filter((article) => article.source === "GBNews"),
   };
 
   return (
@@ -29,24 +31,23 @@ function NewsList() {
       {error && <p className="alert alert-danger">{error}</p>}
       <div className="row">
         {Object.entries(categorizedNews).map(([source, articles]) => (
-          <div key={source} className="col-md-4">
+          <div key={source} className="col-4">
             <h3 className="text-center">{source}</h3>
             {articles.map((article) => (
               <div key={article._id} className="card mb-3">
                 <div className="card-body">
-                  <h5 className="card-title">{article.title}</h5>
-                  <p className="card-text">
-                    Published on:{" "}
-                    {new Date(article.publishedAt).toLocaleDateString()}
-                  </p>
                   <a
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-primary"
                   >
-                    Read More
+                    <h5 className="card-title">{article.title}</h5>
                   </a>
+                  <p>{article.source}</p>
+                  <p className="card-text">
+                    Published on:{" "}
+                    {new Date(article.publishedAt).toLocaleDateString()}
+                  </p>
                 </div>
               </div>
             ))}
