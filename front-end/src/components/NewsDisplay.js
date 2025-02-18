@@ -7,6 +7,7 @@ import skyNewsFavicon from "../assets/newsFavicons/skyNewsFavicon.ico";
 import bbcNewsFavicon from "../assets/newsFavicons/bbcNewsFavicon.ico";
 import guardianFavicon from "../assets/newsFavicons/guardianFavicon.ico";
 import dailyMailFavicon from "../assets/newsFavicons/dailyMailFavicon.ico";
+import gbNewsFavicon from "../assets/newsFavicons/gbNewsFavicon.png";
 
 function NewsList() {
   const [news, setNews] = useState([]);
@@ -39,15 +40,16 @@ function NewsList() {
     "The Guardian": guardianFavicon,
     BBC: bbcNewsFavicon,
     "The Daily Mail": dailyMailFavicon,
+    "GB News": gbNewsFavicon,
   };
 
   return (
-    <div className="container mt-4">
-      <h2>Latest News</h2>
+    <div className="container mt-4 p-0">
+      <h2 className="border-bottom pb-4 mb-4">Latest UK News Feed</h2>
       {error && <p className="alert alert-danger">{error}</p>}
       <div className="row">
         {Object.entries(categorizedNews).map(([source, articles]) => (
-          <div key={source} className="col-4">
+          <div key={source} className="col-4 px-0 px-md-2">
             <h3 className="text-center">{source}</h3>
             {articles.map((article) => {
               // Set border class based on the article source
@@ -63,8 +65,11 @@ function NewsList() {
               }
 
               return (
-                <Card className={`noBorderCustomCard my-2 ${borderColorClass}`} key={article._id}>
-                  <Card.Body className="border-bottom">
+                <Card
+                  className={`noBorderCustomCard my-2 ${borderColorClass}`}
+                  key={article._id}
+                >
+                  <Card.Body className="px-2">
                     <Card.Text className="m-0">
                       <img
                         src={
