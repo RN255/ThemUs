@@ -21,6 +21,10 @@ html {
   color: #000000;
 }
 
+.offBlackText {
+  color: #212529;
+}
+
 .blueText {
   color: #86abd4;
 }

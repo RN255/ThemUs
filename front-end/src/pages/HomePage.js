@@ -75,8 +75,12 @@ function HomePage() {
   return (
     <div className="container-fluid mb-5">
       <NewsDisplay></NewsDisplay>
-
-      <div className="container">
+      <div className="container mt-5 p-0">
+        <div className="row">
+          <div className="col">
+            <h2 className="border-bottom pb-4 mb-2">Discussion</h2>
+          </div>
+        </div>
         <div className="row">
           <div className="col">
             <Accordion flush className="my-4 purpleBorder ">

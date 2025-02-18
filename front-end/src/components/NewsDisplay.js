@@ -3,6 +3,9 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
 
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
+
 import skyNewsFavicon from "../assets/newsFavicons/skyNewsFavicon.ico";
 import bbcNewsFavicon from "../assets/newsFavicons/bbcNewsFavicon.ico";
 import guardianFavicon from "../assets/newsFavicons/guardianFavicon.ico";
@@ -43,9 +46,38 @@ function NewsList() {
     "GB News": gbNewsFavicon,
   };
 
+  // radio button info
+  const [checked, setChecked] = useState(false);
+  const [radioValue, setRadioValue] = useState("1");
+
+  const radios = [
+    { name: "All", value: "1" },
+    { name: "Economy", value: "2" },
+    { name: "Ukraine", value: "3" },
+    { name: "culture", value: "4" },
+  ];
+
   return (
     <div className="container mt-4 p-0">
       <h2 className="border-bottom pb-4 mb-4">Latest UK News Feed</h2>
+
+      <ButtonGroup className="mb-4">
+        {radios.map((radio, idx) => (
+          <ToggleButton
+            key={idx}
+            id={`radio-${idx}`}
+            type="radio"
+            variant={radioValue === radio.value ? "primary" : "outline-primary"} // Highlight selected with 'primary'
+            name="radio"
+            value={radio.value}
+            checked={radioValue === radio.value}
+            onChange={(e) => setRadioValue(e.currentTarget.value)}
+          >
+            {radio.name}
+          </ToggleButton>
+        ))}
+      </ButtonGroup>
+
       {error && <p className="alert alert-danger">{error}</p>}
       <div className="row">
         {Object.entries(categorizedNews).map(([source, articles]) => (
