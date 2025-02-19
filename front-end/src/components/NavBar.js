@@ -26,7 +26,7 @@ function ColorSchemesExample() {
               height="30"
               className="d-inline-block align-top me-3"
             />
-            ThemUsNewsUK
+            ThemUs News UK
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
