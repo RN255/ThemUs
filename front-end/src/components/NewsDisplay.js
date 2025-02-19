@@ -54,8 +54,16 @@ function NewsList() {
     { name: "All", value: "1" },
     { name: "Economy", value: "2" },
     { name: "Ukraine", value: "3" },
-    { name: "culture", value: "4" },
+    { name: "Culture", value: "4" },
   ];
+
+  // select a category
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  // Update radio button handler to set selectedCategory
+  const handleCategoryChange = (value) => {
+    setSelectedCategory(value);
+  };
 
   return (
     <div className="container mt-4 p-0">
@@ -67,11 +75,14 @@ function NewsList() {
             key={idx}
             id={`radio-${idx}`}
             type="radio"
-            variant={radioValue === radio.value ? "primary" : "outline-primary"} // Highlight selected with 'primary'
+            className={radioValue === radio.value ? "selectedRadioButton me-2 rounded" : "clearRadioButton me-2 rounded"}
             name="radio"
             value={radio.value}
             checked={radioValue === radio.value}
-            onChange={(e) => setRadioValue(e.currentTarget.value)}
+            onChange={(e) => {
+              setRadioValue(e.currentTarget.value);
+              handleCategoryChange(radio.name);
+            }}
           >
             {radio.name}
           </ToggleButton>
@@ -79,34 +90,28 @@ function NewsList() {
       </ButtonGroup>
 
       {error && <p className="alert alert-danger">{error}</p>}
-      <div className="row">
-        {Object.entries(categorizedNews).map(([source, articles]) => (
-          <div key={source} className="col-4 px-0 px-md-2">
-            <h3 className="text-center">{source}</h3>
-            {articles.map((article) => {
-              // Set border class based on the article source
-              let borderColorClass = "";
-              if (article.source === "The Guardian") {
-                borderColorClass = "border-none"; // Red border
-              } else if (["BBC", "Sky News"].includes(article.source)) {
-                borderColorClass = "border-none"; // Green border
-              } else if (
-                ["GB News", "The Daily Mail"].includes(article.source)
-              ) {
-                borderColorClass = "border-none"; // Blue border
-              }
 
-              return (
-                <Card
-                  className={`noBorderCustomCard my-2 ${borderColorClass}`}
-                  key={article._id}
-                >
+      <div className="row">
+        {Object.entries(categorizedNews).map(([source, articles]) => {
+          // Filter articles based on selected category
+          const filteredArticles =
+            selectedCategory === "All"
+              ? articles
+              : articles.filter(
+                  (article) => article.category === selectedCategory
+                );
+
+          return (
+            <div key={source} className="col-4 px-0 px-md-2">
+              <h3 className="text-center">{source}</h3>
+              {filteredArticles.map((article) => (
+                <Card className="noBorderCustomCard my-2" key={article._id}>
                   <Card.Body className="px-2">
                     <Card.Text className="m-0">
                       <img
                         src={
                           faviconMap[article.source] || "/favicons/default.ico"
-                        } // Fallback favicon for each article
+                        }
                         alt={article.source}
                         width="16"
                         height="16"
@@ -122,20 +127,12 @@ function NewsList() {
                     >
                       {article.title}
                     </Card.Link>
-                    {/* Uncomment to show formatted date */}
-                    {/* <Card.Text>
-                    {new Date(article.publishedAt).toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </Card.Text> */}
                   </Card.Body>
                 </Card>
-              );
-            })}
-          </div>
-        ))}
+              ))}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

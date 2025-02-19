@@ -150,3 +150,28 @@ body.modal-open {
   padding-right: 0px !important;
   margin-right: 0px !important;
 }
+
+/* radio buttons */
+
+.selectedRadioButton,
+.selectedRadioButton:hover {
+  background-color: #86abd4 !important;
+  border: #86abd4 1px solid !important;
+}
+
+.clearRadioButton {
+  background-color: transparent !important;
+  border: #86abd4 1px solid !important;
+  color: #000000 !important;
+}
+
+.clearRadioButton:hover {
+  background-color: #86abd4 !important;
+  border: #86abd4 1px solid !important;
+  color: #ffffff !important;
+
+}
+
+
+
+
