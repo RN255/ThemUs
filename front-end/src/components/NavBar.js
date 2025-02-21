@@ -17,41 +17,36 @@ function ColorSchemesExample() {
         className="standardColorBackground"
         data-bs-theme="dark"
       >
-        <Container>
-          <Navbar.Brand href="/">
-            <img
-              alt="union flag"
-              src={unionFlagPng}
-              width="30"
-              height="30"
-              className="d-inline-block align-top me-3"
-            />
-            ThemUs News UK
+        <Container className="p-sm-0 p-2">
+          <Navbar.Brand href="/" className="twoPointFiveRem fw-bold pt-0">
+            THEM US <span className="fw-light">News UK</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/info">Info</Nav.Link>
-              {/* <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown> */}
+            <Nav className="me-auto flex-grow-1 d-flex justify-content-start">
+              {/* Left-aligned items */}
             </Nav>
-            <Nav>
-              {/* <Nav.Link href="#deets">More deets</Nav.Link> */}
-              {/* <Nav.Link eventKey={2} href="#memes">
-                Dank memes
-              </Nav.Link> */}
-              <Navbar.Text className="d-none d-lg-block"> {today} </Navbar.Text>
+
+            {/* <Nav className="flex-grow-1 d-flex justify-content-center ">
+              <Nav.Link href="/info" className="d-inline">
+                Info |
+              </Nav.Link>
+            </Nav> */}
+
+            <Nav className="flex-grow-1 d-flex justify-content-end align-items-center">
+              <Nav.Link href="/info" className="d-inline">
+                Info |
+              </Nav.Link>
+              <Navbar.Text className="d-none d-lg-block">
+                {today}
+                {/* <img
+                  alt="union flag"
+                  src={unionFlagPng}
+                  width="30"
+                  height="30"
+                  className="d-inline-block align-top ms-3 border"
+                />{" "} */}
+              </Navbar.Text>
             </Nav>
           </Navbar.Collapse>
         </Container>

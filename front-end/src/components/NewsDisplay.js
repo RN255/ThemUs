@@ -11,6 +11,7 @@ import bbcNewsFavicon from "../assets/newsFavicons/bbcNewsFavicon.ico";
 import guardianFavicon from "../assets/newsFavicons/guardianFavicon.ico";
 import dailyMailFavicon from "../assets/newsFavicons/dailyMailFavicon.ico";
 import gbNewsFavicon from "../assets/newsFavicons/gbNewsFavicon.png";
+import BreitbartFavicon from "../assets/newsFavicons/BreitbartFavicon.ico";
 
 function NewsList() {
   const [news, setNews] = useState([]);
@@ -28,22 +29,23 @@ function NewsList() {
   }, []);
 
   const categorizedNews = {
-    Left: news.filter((article) => article.source === "The Guardian"),
+    Left: news.filter((article) => article.source === "Guardian"),
     Centre: news.filter((article) =>
       ["BBC", "Sky News"].includes(article.source)
     ),
     Right: news.filter((article) =>
-      ["GB News", "The Daily Mail"].includes(article.source)
+      ["GB News", "Daily Mail", "Breitbart"].includes(article.source)
     ),
   };
 
   // Favicon mapping
   const faviconMap = {
     "Sky News": skyNewsFavicon,
-    "The Guardian": guardianFavicon,
+    Guardian: guardianFavicon,
     BBC: bbcNewsFavicon,
-    "The Daily Mail": dailyMailFavicon,
+    "Daily Mail": dailyMailFavicon,
     "GB News": gbNewsFavicon,
+    Breitbart: BreitbartFavicon,
   };
 
   // radio button info
@@ -55,6 +57,8 @@ function NewsList() {
     { name: "Economy", value: "2" },
     { name: "Ukraine", value: "3" },
     { name: "Culture", value: "4" },
+    { name: "Crime", value: "5" },
+    { name: "International", value: "6" },
   ];
 
   // select a category
@@ -69,13 +73,17 @@ function NewsList() {
     <div className="container mt-4 p-0">
       <h2 className="border-bottom pb-4 mb-4">Latest UK News Feed</h2>
 
-      <ButtonGroup className="mb-4">
+      <ButtonGroup className="mb-4 d-flex flex-wrap">
         {radios.map((radio, idx) => (
           <ToggleButton
             key={idx}
             id={`radio-${idx}`}
             type="radio"
-            className={radioValue === radio.value ? "selectedRadioButton me-2 rounded" : "clearRadioButton me-2 rounded"}
+            className={
+              radioValue === radio.value
+                ? "selectedRadioButton me-2 mt-1 rounded"
+                : "clearRadioButton me-2 mt-1 rounded"
+            }
             name="radio"
             value={radio.value}
             checked={radioValue === radio.value}

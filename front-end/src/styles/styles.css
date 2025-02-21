@@ -79,6 +79,17 @@ html {
   background-color: #86abd4;
 }
 
+.twoPointFiveRem {
+  font-size: 2rem;
+}
+
+/* title font */
+
+.titleFont {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
 /* Remove background colors on accordion  */
 
 .blueBorder {
@@ -169,9 +180,4 @@ body.modal-open {
   background-color: #86abd4 !important;
   border: #86abd4 1px solid !important;
   color: #ffffff !important;
-
 }
-
-
-
-
