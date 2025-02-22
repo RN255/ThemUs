@@ -35,7 +35,7 @@ function ColorSchemesExample() {
 
             <Nav className="flex-grow-1 d-flex justify-content-end align-items-center">
               <Nav.Link href="/info" className="d-inline">
-                Info |
+                Info <span className="d-none d-lg-inline">|</span>
               </Nav.Link>
               <Navbar.Text className="d-none d-lg-block">
                 {today}

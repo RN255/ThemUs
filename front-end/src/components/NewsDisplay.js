@@ -13,6 +13,10 @@ import dailyMailFavicon from "../assets/newsFavicons/dailyMailFavicon.ico";
 import gbNewsFavicon from "../assets/newsFavicons/gbNewsFavicon.png";
 import BreitbartFavicon from "../assets/newsFavicons/BreitbartFavicon.ico";
 
+import IndependentFavicon from "../assets/newsFavicons/independentFavicon.ico";
+import MirrorFavicon from "../assets/newsFavicons/mirrorFavicon.ico";
+import ItvFavicon from "../assets/newsFavicons/itvFavicon.ico";
+
 function NewsList() {
   const [news, setNews] = useState([]);
   const [error, setError] = useState("");
@@ -29,9 +33,11 @@ function NewsList() {
   }, []);
 
   const categorizedNews = {
-    Left: news.filter((article) => article.source === "Guardian"),
+    Left: news.filter((article) =>
+      ["Guardian", "Independent", "Mirror"].includes(article.source)
+    ),
     Centre: news.filter((article) =>
-      ["BBC", "Sky News"].includes(article.source)
+      ["BBC", "Sky News", "ITV"].includes(article.source)
     ),
     Right: news.filter((article) =>
       ["GB News", "Daily Mail", "Breitbart"].includes(article.source)
@@ -40,9 +46,14 @@ function NewsList() {
 
   // Favicon mapping
   const faviconMap = {
-    "Sky News": skyNewsFavicon,
     Guardian: guardianFavicon,
+    Independent: IndependentFavicon,
+    Mirror: MirrorFavicon,
+
+    "Sky News": skyNewsFavicon,
     BBC: bbcNewsFavicon,
+    ITV: ItvFavicon,
+
     "Daily Mail": dailyMailFavicon,
     "GB News": gbNewsFavicon,
     Breitbart: BreitbartFavicon,
@@ -56,9 +67,8 @@ function NewsList() {
     { name: "All", value: "1" },
     { name: "Economy", value: "2" },
     { name: "Ukraine", value: "3" },
-    { name: "Culture", value: "4" },
-    { name: "Crime", value: "5" },
-    { name: "International", value: "6" },
+    { name: "UK", value: "4" },
+    { name: "International", value: "5" },
   ];
 
   // select a category
