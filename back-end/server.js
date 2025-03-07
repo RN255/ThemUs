@@ -6,6 +6,7 @@ const cors = require("cors");
 const app = express();
 const entryRoutes = require("./routes/entryRoutes");
 const commentRoutes = require("./routes/commentRoutes");
+const newsRoutes = require("./routes/newsRoutes");
 const port = process.env.PORT;
 const dbURI = process.env.MONGODB_URI;
 
