@@ -34,6 +34,9 @@ app.use("/api/entries", entryRoutes);
 // Connect comments and user routes to the app
 app.use("/api/comments", commentRoutes);
 
+// Connect news routes to the app
+app.use("/api/news", newsRoutes);
+
 // Define your API routes and middleware here
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
@@ -43,4 +46,3 @@ app.listen(port, () => {
 app.get("/api/hello", (req, res) => {
   res.json({ message: "Hello from the server!" });
 });
-

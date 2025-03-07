@@ -23,7 +23,7 @@ function NewsList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5001/api/news/news")
+      .get("https://themus.onrender.com/api/news/news")
       .then((response) => {
         setNews(response.data);
       })
