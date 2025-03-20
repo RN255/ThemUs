@@ -3,11 +3,32 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 // import NavDropdown from "react-bootstrap/NavDropdown";
 import unionFlagPng from "../assets/united-kingdom.png";
+import { useEffect, useState } from "react";
 
 function ColorSchemesExample() {
   const today = new Intl.DateTimeFormat("en-GB", { dateStyle: "full" }).format(
     new Date()
   );
+
+  // get the user name
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    fetch("http://localhost:5000/auth/user", { credentials: "include" })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (data && data.user) {
+          setUser(data.user);
+        } else {
+          setUser(null); // Ensures state is properly handled
+        }
+      })
+      .catch((error) => console.error("Error fetching user:", error));
+  }, []);
 
   return (
     <>
@@ -47,6 +68,11 @@ function ColorSchemesExample() {
                   className="d-inline-block align-top ms-3 border"
                 />{" "} */}
               </Navbar.Text>
+              {user ? (
+                <h2>Signed in as: {user.displayName}</h2>
+              ) : (
+                <h2>Not signed in</h2>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

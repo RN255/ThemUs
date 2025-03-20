@@ -3,46 +3,76 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const app = express();
+const passport = require("passport");
+const session = require("express-session");
+
 const entryRoutes = require("./routes/entryRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const newsRoutes = require("./routes/newsRoutes");
-const port = process.env.PORT;
+require("./config/passport"); // Load Passport config
+
+const app = express();
+const port = process.env.PORT || 5000;
 const dbURI = process.env.MONGODB_URI;
 
-// Connect to your MongoDB database
-mongoose.connect(dbURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// ✅ Connect to MongoDB
+mongoose
+  .connect(dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("✅ MongoDB connected successfully"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-const connection = mongoose.connection;
+// ✅ CORS Configuration (Ensures frontend can send credentials)
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Allow only frontend origin
+    credentials: true, // Allow cookies and authentication headers
+  })
+);
 
-connection.once("open", () => {
-  console.log("MongoDB database connection established successfully");
-});
+// ✅ Express session (for persistent login)
+app.use(
+  session({
+    secret: "supersecretkey",
+    resave: false, // Don't resave session if nothing changed
+    saveUninitialized: false, // Don't store empty sessions
+    cookie: { secure: false }, // Secure: true for HTTPS in production
+  })
+);
 
-// allow for JSON request body parsing
+// ✅ Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// ✅ Middleware to parse JSON
 app.use(express.json());
 
-// Enable CORS for all routes
-app.use(cors());
-
-// Connect entry and user routes to the app
+// ✅ API Routes
 app.use("/api/entries", entryRoutes);
-
-// Connect comments and user routes to the app
 app.use("/api/comments", commentRoutes);
-
-// Connect news routes to the app
 app.use("/api/news", newsRoutes);
+app.use("/auth", require("./routes/auth"));
 
-// Define your API routes and middleware here
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+// ✅ Debug Route to Check Authentication
+app.get("/auth/user", (req, res) => {
+  console.log("Session Data:", req.session);
+  console.log("User Data:", req.user);
+
+  if (req.user) {
+    res.json({ user: req.user });
+  } else {
+    res.json({ user: null });
+  }
 });
 
-// Define a sample route
+// ✅ Sample Route
 app.get("/api/hello", (req, res) => {
   res.json({ message: "Hello from the server!" });
+});
+
+// ✅ Start the server
+app.listen(port, () => {
+  console.log(`✅ Server running on port ${port}`);
 });
