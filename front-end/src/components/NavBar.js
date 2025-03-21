@@ -30,6 +30,11 @@ function ColorSchemesExample() {
       .catch((error) => console.error("Error fetching user:", error));
   }, []);
 
+  // Handle logout
+  const handleLogout = () => {
+    window.location.href = "http://localhost:5000/auth/logout";
+  };
+
   return (
     <>
       <Navbar
@@ -60,6 +65,7 @@ function ColorSchemesExample() {
               </Nav.Link>
               <Navbar.Text className="d-none d-lg-block">
                 {today}
+                <span className="d-none d-lg-inline mx-2">|</span>
                 {/* <img
                   alt="union flag"
                   src={unionFlagPng}
@@ -69,9 +75,14 @@ function ColorSchemesExample() {
                 />{" "} */}
               </Navbar.Text>
               {user ? (
-                <h2>Signed in as: {user.displayName}</h2>
+                <Navbar.Text>
+                  Signed in as: {user.displayName}
+                  <button onClick={handleLogout}>Sign Out</button>
+                </Navbar.Text>
               ) : (
-                <h2>Not signed in</h2>
+                <Navbar.Text>
+                  <Nav.Link href="/loginScreen">Log in</Nav.Link>{" "}
+                </Navbar.Text>
               )}
             </Nav>
           </Navbar.Collapse>

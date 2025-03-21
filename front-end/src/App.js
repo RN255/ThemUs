@@ -9,6 +9,7 @@ import "./styles/styles.css";
 import SingleDebate from "./pages/SingleDebate";
 import Footer from "./components/Footer";
 import Info from "./pages/Info";
+import LoginScreen from "./pages/LoginScreen";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/singleDebate/:id" element={<SingleDebate />} />
           <Route path="/info" element={<Info />} />
+          <Route path="/loginScreen" element={<LoginScreen />} />
         </Routes>
       </BrowserRouter>
       <Footer></Footer>
