@@ -17,6 +17,8 @@ import IndependentFavicon from "../assets/newsFavicons/independentFavicon.ico";
 import MirrorFavicon from "../assets/newsFavicons/mirrorFavicon.ico";
 import ItvFavicon from "../assets/newsFavicons/itvFavicon.ico";
 
+import { useAuth } from "../contexts/AuthContext";
+
 function NewsList() {
   const [news, setNews] = useState([]);
   const [error, setError] = useState("");
@@ -79,9 +81,13 @@ function NewsList() {
     setSelectedCategory(value);
   };
 
+  // is signed in as user?
+  const { user } = useAuth();
+
   return (
     <div className="container mt-4 p-0">
       <h2 className="border-bottom pb-4 mb-4">Latest UK News Feed</h2>
+      {user && <h3 className="">You are viewing as {user.displayName}</h3>}
 
       <ButtonGroup className="mb-4 d-flex flex-wrap">
         {radios.map((radio, idx) => (
