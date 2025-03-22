@@ -84,10 +84,23 @@ function NewsList() {
   // is signed in as user?
   const { user } = useAuth();
 
+  // handle payment
+  const handlePayment = async () => {
+    const res = await fetch("http://localhost:5000/payment/create-checkout-session", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+    });
+  
+    const data = await res.json();
+    window.location.href = data.url;
+  };
+
   return (
     <div className="container mt-4 p-0">
       <h2 className="border-bottom pb-4 mb-4">Latest UK News Feed</h2>
       {user && <h3 className="">You are viewing as {user.displayName}</h3>}
+      {user && <button onClick={handlePayment}>Buy Premium Access (£5)</button>}
 
       <ButtonGroup className="mb-4 d-flex flex-wrap">
         {radios.map((radio, idx) => (

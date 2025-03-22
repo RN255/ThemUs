@@ -10,6 +10,8 @@ import SingleDebate from "./pages/SingleDebate";
 import Footer from "./components/Footer";
 import Info from "./pages/Info";
 import LoginScreen from "./pages/LoginScreen";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentCancel from "./pages/PaymentCancel";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/singleDebate/:id" element={<SingleDebate />} />
           <Route path="/info" element={<Info />} />
           <Route path="/loginScreen" element={<LoginScreen />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
+          <Route path="/payment-cancel" element={<PaymentCancel />} />
         </Routes>
       </BrowserRouter>
       <Footer></Footer>
