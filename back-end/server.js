@@ -15,7 +15,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const dbURI = process.env.MONGODB_URI;
 
-// ✅ Connect to MongoDB
+// ✅ Connect with MongoDB
 mongoose
   .connect(dbURI, {
     useNewUrlParser: true,
