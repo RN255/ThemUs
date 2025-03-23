@@ -53,6 +53,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Stripe webhook needs raw body, mount this FIRST
+app.use("/webhook", require("./routes/webhook"));
+
 // ✅ Middleware to parse JSON
 app.use(express.json());
 
