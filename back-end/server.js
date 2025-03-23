@@ -27,20 +27,27 @@ mongoose
 // ✅ CORS Configuration (Ensures frontend can send credentials)
 app.use(
   cors({
-    origin: "http://localhost:3000", // Allow only frontend origin
+    origin: "https://www.themus.org", // Allow only frontend origin
     credentials: true, // Allow cookies and authentication headers
   })
 );
 
 // ✅ Express session (for persistent login)
+app.set("trust proxy", 1);
+
 app.use(
   session({
     secret: "supersecretkey",
-    resave: false, // Don't resave session if nothing changed
-    saveUninitialized: false, // Don't store empty sessions
-    cookie: { secure: false }, // Secure: true for HTTPS in production
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: true,
+      sameSite: "none",
+      httpOnly: true,
+    },
   })
 );
+
 
 // ✅ Passport Middleware
 app.use(passport.initialize());

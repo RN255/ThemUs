@@ -13,7 +13,7 @@ function ColorSchemesExample() {
   // get the user name
   const [user, setUser] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:5000/auth/user", { credentials: "include" })
+    fetch("https://themus.onrender.com/auth/user", { credentials: "include" })
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! Status: ${res.status}`);
@@ -32,7 +32,7 @@ function ColorSchemesExample() {
 
   // Handle logout
   const handleLogout = () => {
-    window.location.href = "http://localhost:5000/auth/logout";
+    window.location.href = "https://themus.onrender.com/auth/logout";
   };
 
   return (

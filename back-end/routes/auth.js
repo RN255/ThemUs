@@ -18,7 +18,7 @@ router.get(
   }),
   (req, res) => {
     console.log("User successfully authenticated:", req.user);
-    res.redirect("http://localhost:3000"); // Redirect to frontend after login
+    res.redirect("https://www.themus.org/"); // Redirect to frontend after login
   }
 );
 
@@ -29,7 +29,7 @@ router.get("/logout", (req, res, next) => {
       return next(err); // Handle errors properly
     }
     req.session.destroy(() => {
-      res.redirect("http://localhost:3000"); // Redirect to frontend after logout
+      res.redirect("https://www.themus.org/"); // Redirect to frontend after logout
     });
   });
 });

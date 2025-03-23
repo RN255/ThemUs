@@ -5,7 +5,9 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 // Middleware to ensure user is logged in
 const ensureAuth = (req, res, next) => {
   if (req.user) return next();
-  return res.status(401).json({ error: "You must be logged in to make a payment." });
+  return res
+    .status(401)
+    .json({ error: "You must be logged in to make a payment." });
 };
 
 router.post("/create-checkout-session", ensureAuth, async (req, res) => {
@@ -27,8 +29,8 @@ router.post("/create-checkout-session", ensureAuth, async (req, res) => {
           quantity: 1,
         },
       ],
-      success_url: "http://localhost:3000/payment-success",
-      cancel_url: "http://localhost:3000/payment-cancel",
+      success_url: "https://www.themus.org/payment-success",
+      cancel_url: "https://www.themus.org/payment-cancel",
     });
 
     res.json({ url: session.url });

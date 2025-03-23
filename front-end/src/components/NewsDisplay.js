@@ -86,12 +86,15 @@ function NewsList() {
 
   // handle payment
   const handlePayment = async () => {
-    const res = await fetch("http://localhost:5000/payment/create-checkout-session", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-    });
-  
+    const res = await fetch(
+      "https://themus.onrender.com/payment/create-checkout-session",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
     const data = await res.json();
     window.location.href = data.url;
   };
