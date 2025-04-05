@@ -45,7 +45,7 @@ function ColorSchemesExample() {
       >
         <Container className="p-sm-0 p-2">
           <Navbar.Brand href="/" className="twoPointFiveRem fw-bold pt-0">
-            THEM US <span className="fw-light">News UK</span>
+            THEM US <span className="fw-light">AI</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
