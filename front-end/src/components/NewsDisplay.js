@@ -104,6 +104,7 @@ function NewsList() {
       <h2 className="border-bottom pb-4 mb-4">Latest UK News Feed</h2>
       {user && <h3 className="">You are viewing as {user.displayName}</h3>}
       {user && <button onClick={handlePayment}>Buy Premium Access (£5)</button>}
+      {user?.isPremium && <h3 className="">You are a premium user</h3>}
 
       <ButtonGroup className="mb-4 d-flex flex-wrap">
         {radios.map((radio, idx) => (
