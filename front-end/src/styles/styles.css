@@ -181,3 +181,11 @@ body.modal-open {
   border: #86abd4 1px solid !important;
   color: #ffffff !important;
 }
+
+/* Banner on landing page  */
+
+.landingBannerBackground {
+  background: linear-gradient(135deg, #007bff75, #00c6ff);
+  color: white;
+  padding: 60px 0;
+}
