@@ -76,7 +76,7 @@ html {
 }
 
 .standardColorBackground {
-  background-color: #86abd4;
+  background-color: #6ea8ff;
 }
 
 .twoPointFiveRem {
@@ -139,8 +139,8 @@ html {
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary:visited {
-  background-color: #2477bf !important;
-  border: #2477bf 1px solid !important;
+  background-color: #6ea8ff !important;
+  border: #6ea8ff 1px solid !important;
 }
 
 .backButtonHover:hover {
@@ -185,7 +185,7 @@ body.modal-open {
 /* Banner on landing page  */
 
 .landingBannerBackground {
-  background: linear-gradient(135deg, #007bff75, #00c6ff);
+  background: linear-gradient(135deg, #6ea8ff, #c6ddff);
   color: white;
   padding: 60px 0;
 }
