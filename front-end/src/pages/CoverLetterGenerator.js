@@ -14,9 +14,12 @@ export default function CoverLetterGenerator() {
     const prompt = `Write a cover letter based on this CV:\n${cvText}\nAnd this job description:\n${jobDesc}`;
 
     try {
-      const res = await axios.post("http://localhost:5000/api/gpt/generate", {
-        prompt,
-      });
+      const res = await axios.post(
+        "https://themus.onrender.com/api/gpt/generate",
+        {
+          prompt,
+        }
+      );
       setResponse(res.data.response);
     } catch (error) {
       console.error("Error calling GPT:", error);
@@ -29,10 +32,10 @@ export default function CoverLetterGenerator() {
   return (
     <Container>
       <Row className="my-5 mb-3">
-        <h2 className="text-center display-5 fw-bold mb-4">
-          AI Cover Letter Writer
-        </h2>
-        <p className="text-center">We need to get GPT doing it first.</p>
+        <h2 className="text-center display-5 mb-4">AI Cover Letter Creator</h2>
+        <p className="text-center fst-italic">
+          Sometimes it's hard to know what to say.
+        </p>
       </Row>
       <Row>
         <Col>
