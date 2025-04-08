@@ -14,6 +14,8 @@ import ThemUsScreenshotSmaller from "../assets/ThemUsScreenshotSmaller.jpg";
 
 import axios from "axios";
 
+import { useAuth } from "../contexts/AuthContext";
+
 const features = [
   {
     title: "Reliable Performance",
@@ -41,8 +43,13 @@ const services = [
 ];
 
 function HomePage() {
+  // is signed in as user?
+  const { user } = useAuth();
+
   return (
     <Container className="py-5 my-5">
+      {user && <h3 className="">You are viewing as {user.displayName}</h3>}
+
       <Row className="align-items-center">
         <Col
           md={6}
@@ -116,7 +123,10 @@ function HomePage() {
       </Row>
 
       {services.map((services, idx) => (
-        <Row className="row-cols-1 row-cols-lg-3 align-items-stretch g-4">
+        <Row
+          key={idx}
+          className="row-cols-1 row-cols-lg-3 align-items-stretch g-4"
+        >
           <Col>
             <Link to={services.link} className="text-decoration-none">
               <Card

@@ -3,7 +3,8 @@ import React from "react";
 export default function LoginScreen() {
   // direct to google OAuth
   const handleLogin = () => {
-    window.location.href = "https://themus.onrender.com/auth/google";
+    // window.location.href = "https://themus.onrender.com/auth/google";
+    window.location.href = "http://localhost:5000/auth/google";
   };
 
   return (

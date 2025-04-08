@@ -7,9 +7,13 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://themus.onrender.com/auth/user", {
-      credentials: "include",
-    })
+    fetch(
+      // "https://themus.onrender.com/auth/user",
+      "http://localhost:5000/auth/user",
+      {
+        credentials: "include",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setUser(data.user);

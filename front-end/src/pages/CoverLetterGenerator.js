@@ -15,7 +15,8 @@ export default function CoverLetterGenerator() {
 
     try {
       const res = await axios.post(
-        "https://themus.onrender.com/api/gpt/generate",
+        // "https://themus.onrender.com/api/gpt/generate",
+        "http://localhost:5000/api/gpt/generate",
         {
           prompt,
         }
