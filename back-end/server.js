@@ -27,7 +27,7 @@ mongoose
 // ✅ CORS Configuration (Ensures frontend can send credentials)
 app.use(
   cors({
-    origin: "https://www.themus.org", // Allow only frontend origin
+    origin: ["https://www.themus.org", "http://localhost:3000"],
     credentials: true, // Allow cookies and authentication headers
   })
 );
@@ -47,7 +47,6 @@ app.use(
     },
   })
 );
-
 
 // ✅ Passport Middleware
 app.use(passport.initialize());
@@ -87,3 +86,7 @@ app.get("/api/hello", (req, res) => {
 app.listen(port, () => {
   console.log(`✅ Server running on port ${port}`);
 });
+
+// GPT routes
+const gptRoutes = require("./routes/gpt");
+app.use("/api/gpt", gptRoutes);

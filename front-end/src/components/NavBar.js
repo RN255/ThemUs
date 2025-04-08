@@ -53,11 +53,11 @@ function ColorSchemesExample() {
               {/* Left-aligned items */}
             </Nav>
 
-            {/* <Nav className="flex-grow-1 d-flex justify-content-center ">
-              <Nav.Link href="/info" className="d-inline">
-                Info |
+            <Nav className="flex-grow-1 d-flex justify-content-center ">
+              <Nav.Link href="/coverLetterGenerator" className="d-inline">
+                Cover Letter Creator
               </Nav.Link>
-            </Nav> */}
+            </Nav>
 
             <Nav className="flex-grow-1 d-flex justify-content-end align-items-center">
               <Nav.Link href="/info" className="d-inline">

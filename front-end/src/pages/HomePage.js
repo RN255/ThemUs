@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 
 import { Container, Row, Col, Button, Card, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import PaginatedTopicList from "../components/PaginatedTopicList";
 import NewsDisplay from "../components/NewsDisplay";
@@ -35,6 +36,7 @@ const services = [
   {
     title: "CV writer",
     text: "Write a CV in British English using AI.",
+    link: "/coverLetterGenerator",
   },
 ];
 
@@ -116,21 +118,22 @@ function HomePage() {
       {services.map((services, idx) => (
         <Row className="row-cols-1 row-cols-lg-3 align-items-stretch g-4">
           <Col>
-            <Card
-              className="h-100 text-white bg-dark rounded-5 shadow-lg card-cover overflow-hidden"
-              style={{
-                backgroundImage: `url(${heroImage})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              <div className="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                <h2 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
-                  {services.title}{" "}
-                </h2>
-                <p>{services.text}</p>
+            <Link to={services.link} className="text-decoration-none">
+              <Card
+                className="h-100 text-white bg-dark rounded-5 shadow-lg card-cover overflow-hidden"
+                style={{
+                  backgroundImage: `url(${heroImage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                  <h2 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
+                    {services.title}{" "}
+                  </h2>
+                  <p>{services.text}</p>
 
-                {/* <ul className="d-flex list-unstyled mt-auto">
+                  {/* <ul className="d-flex list-unstyled mt-auto">
                   <li className="me-auto">
                     <img
                       src={heroImage}
@@ -154,8 +157,9 @@ function HomePage() {
                     <small>3d</small>
                   </li>
                 </ul> */}
-              </div>
-            </Card>
+                </div>
+              </Card>
+            </Link>
           </Col>
         </Row>
       ))}
@@ -227,7 +231,7 @@ function HomePage() {
             better. We want you to join us on this journey and we hope it helps
             you and your life.
           </p>
-          <div className="d-grid gap-2 d-md-flex justify-content-md-start border">
+          <div className="d-grid gap-2 d-md-flex justify-content-md-start">
             <Button variant="primary" size="lg" className="px-4 me-md-2">
               See services
             </Button>

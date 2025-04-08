@@ -12,6 +12,7 @@ import Info from "./pages/Info";
 import LoginScreen from "./pages/LoginScreen";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentCancel from "./pages/PaymentCancel";
+import CoverLetterGenerator from "./pages/CoverLetterGenerator";
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
           <Route path="/loginScreen" element={<LoginScreen />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/payment-cancel" element={<PaymentCancel />} />
+          <Route
+            path="/coverLetterGenerator"
+            element={<CoverLetterGenerator />}
+          />
         </Routes>
       </BrowserRouter>
       <Footer></Footer>
