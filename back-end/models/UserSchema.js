@@ -6,7 +6,10 @@ const UserSchema = new mongoose.Schema(
     displayName: String,
     email: { type: String, unique: true },
     photo: String,
-    isPremium: { type: Boolean, default: false },
+    plan: { type: String, enum: ["free", "premium"], default: "free" },
+    usedLetters: { type: Number, default: 0 },
+    letterLimit: { type: Number, default: 3 },
+    renewsAt: { type: Date },
   },
   { timestamps: true }
 );
