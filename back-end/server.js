@@ -66,6 +66,7 @@ app.use("/api/comments", commentRoutes);
 app.use("/api/news", newsRoutes);
 app.use("/auth", require("./routes/auth"));
 app.use("/payment", require("./routes/payment"));
+app.use("/users", require("./routes/users"));
 
 // ✅ Debug Route to Check Authentication
 app.get("/auth/user", (req, res) => {
