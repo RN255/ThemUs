@@ -20,7 +20,6 @@ router.get(
     console.log("User successfully authenticated:", req.user);
     // res.redirect("https://www.themus.org/"); // Redirect to frontend after login
     res.redirect("http://localhost:3000/"); // Redirect to frontend after login
-
   }
 );
 
@@ -47,6 +46,14 @@ router.get("/user", (req, res) => {
     res.json({ user: req.user });
   } else {
     res.json({ user: null });
+  }
+});
+
+router.get("/me", (req, res) => {
+  if (req.user) {
+    res.json(req.user); // You can also wrap in { user: req.user } if preferred
+  } else {
+    res.status(401).json({ message: "Not authenticated" });
   }
 });
 

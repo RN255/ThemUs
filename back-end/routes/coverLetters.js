@@ -20,4 +20,20 @@ router.post("/", async (req, res) => {
   }
 });
 
+// GET /api/coverLetters/user/:userId
+router.get("/user/:userId", async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    res.json(user.coverLetters); // Send all cover letters
+  } catch (err) {
+    console.error("Error fetching user cover letters:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 module.exports = router;

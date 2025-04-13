@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Nav } from "react-bootstrap";
 import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
@@ -78,9 +78,14 @@ export default function CoverLetterGenerator() {
 
   return (
     <Container>
-      <Link to="/previousLetters" className="d-inline">
-        See Previous Letters
-      </Link>
+      <Nav variant="tabs" defaultActiveKey="/coverLetterGenerator">
+        <Nav.Item>
+          <Nav.Link href="/coverLetterGenerator">Create</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/previousLetters">Letter History</Nav.Link>
+        </Nav.Item>
+      </Nav>
       <Row className="my-5 mb-3">
         <Col>
           <h2 className="text-center display-5 mb-4">
@@ -135,10 +140,9 @@ export default function CoverLetterGenerator() {
                   <Button variant="primary" type="submit" disabled>
                     {loading ? "Generating..." : "Submit"}
                   </Button>
-                  <Alert variant="danger mt-3">
-                    <Alert.Heading>You've used up your quota</Alert.Heading>
-                    If you want more letters you can sign up to the plus plan.
-                  </Alert>
+                  <p className="text-danger d-inline ms-4">
+                    You've used up your quota
+                  </p>
                 </>
               ) : (
                 <Button variant="primary" type="submit" disabled={loading}>

@@ -4,41 +4,19 @@ import Navbar from "react-bootstrap/Navbar";
 // import NavDropdown from "react-bootstrap/NavDropdown";
 import unionFlagPng from "../assets/united-kingdom.png";
 import { useEffect, useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
 
 function ColorSchemesExample() {
   const today = new Intl.DateTimeFormat("en-GB", { dateStyle: "full" }).format(
     new Date()
   );
 
-  // get the user name
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    fetch(
-      // "https://themus.onrender.com/auth/user",
-      "http://localhost:5000/auth/user",
-      { credentials: "include" }
-    )
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        if (data && data.user) {
-          setUser(data.user);
-        } else {
-          setUser(null); // Ensures state is properly handled
-        }
-      })
-      .catch((error) => console.error("Error fetching user:", error));
-  }, []);
+  const { user, loading, logout } = useAuth();
 
   // Handle logout
-  const handleLogout = () => {
-    window.location.href =
-      // "https://themus.onrender.com/auth/logout"
-      "http://localhost:5000/auth/logout";
+  const handleLogout = async () => {
+    await logout();
+    window.location.href = "/"; // or redirect wherever you want
   };
 
   return (
@@ -59,7 +37,7 @@ function ColorSchemesExample() {
               {/* Left-aligned items */}
             </Nav>
 
-            <Nav className="flex-grow-1 d-flex justify-content-center ">
+            <Nav className="flex-grow-1 d-flex justify-content-center navbar-fade-in">
               <Nav.Link href="/coverLetterGenerator" className="d-inline">
                 Cover Letter Creator
               </Nav.Link>
@@ -80,16 +58,40 @@ function ColorSchemesExample() {
                   className="d-inline-block align-top ms-3 border"
                 />{" "} */}
               </Navbar.Text>
-              {user ? (
-                <Navbar.Text>
-                  Signed in as: {user.displayName}
-                  <button onClick={handleLogout}>Sign Out</button>
-                </Navbar.Text>
+              <Navbar.Text>
+                {loading ? (
+                  <span className="text-muted">Loading...</span>
+                ) : user ? (
+                  <>
+                    Hello, {user.displayName}
+                    <Nav.Link className="d-inline-block" onClick={handleLogout}>
+                      Sign Out
+                    </Nav.Link>
+                  </>
+                ) : (
+                  <Nav.Link href="/loginScreen">Log in</Nav.Link>
+                )}
+              </Navbar.Text>
+              {/* {user ? (
+                <>
+                  <Navbar.Text> */}
+              {/* Signed in as: {user.displayName} */}
+              {/* <button onClick={handleLogout}>Sign Out</button> */}
+              {/* <Nav.Link
+                      className="d-inline-block item-fade-in"
+                      onClick={handleLogout}
+                    >
+                      Sign Out
+                    </Nav.Link>{" "}
+                  </Navbar.Text>
+                </>
               ) : (
-                <Navbar.Text>
-                  <Nav.Link href="/loginScreen">Log in</Nav.Link>{" "}
-                </Navbar.Text>
-              )}
+                <>
+                  <Navbar.Text>
+                    <Nav.Link href="/loginScreen">Log in</Nav.Link>{" "}
+                  </Navbar.Text>
+                </>
+              )} */}
             </Nav>
           </Navbar.Collapse>
         </Container>
