@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function CoverLetterGenerator() {
   const [cvText, setCvText] = useState("");
@@ -47,7 +48,24 @@ export default function CoverLetterGenerator() {
           headers: { "Content-Type": "application/json" },
         }
       );
-      setResponse(res.data.response);
+
+      const generatedLetter = res.data.response;
+      setResponse(generatedLetter);
+
+      // ✅ NOW: Save the GPT-generated cover letter to MongoDB
+      await axios.post(
+        "http://localhost:5000/api/coverLetters",
+        {
+          userId: user._id, // 👈 Make sure `user` is available in context/state
+          content: generatedLetter,
+          jobTitle: null, // optional, if you're capturing it
+          company: null, // optional
+        },
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
     } catch (error) {
       console.error("Error calling GPT:", error);
       setResponse("Error getting response.");
@@ -60,20 +78,40 @@ export default function CoverLetterGenerator() {
 
   return (
     <Container>
-      {userDetails && <p>{userDetails.displayName}</p>}
-      {userDetails && <p>{userDetails.usedLetters}</p>}
-      {userDetails && <p>{userDetails.letterLimit}</p>}
+      <Link to="/previousLetters" className="d-inline">
+        See Previous Letters
+      </Link>
       <Row className="my-5 mb-3">
-        <h2 className="text-center display-5 mb-4">AI Cover Letter Creator</h2>
-        <p className="text-center fst-italic">
-          Sometimes it's hard to know what to say.
-        </p>
+        <Col>
+          <h2 className="text-center display-5 mb-4">
+            AI Cover Letter Creator
+          </h2>
+          <p className="text-center fst-italic">
+            Sometimes it's hard to know what to say.
+          </p>
+        </Col>
+      </Row>
+      <Row>
+        <Col className="fst-italic">
+          Number of letters used:{" "}
+          {userDetails ? (
+            userDetails.usedLetters >= userDetails.letterLimit ? (
+              <p className="text-danger d-inline">
+                {userDetails.usedLetters}/{userDetails.letterLimit}
+              </p>
+            ) : (
+              <p className="text-success d-inline">
+                {userDetails.usedLetters}/{userDetails.letterLimit}
+              </p>
+            )
+          ) : null}
+        </Col>
       </Row>
       <Row>
         <Col>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="cvInput">
-              <Form.Label>Input your CV</Form.Label>
+              <Form.Label>Put your CV in here:</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={10}
@@ -82,7 +120,7 @@ export default function CoverLetterGenerator() {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="jobDescInput">
-              <Form.Label>Input the job description</Form.Label>
+              <Form.Label>Put the job description in here:</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={10}
@@ -90,14 +128,29 @@ export default function CoverLetterGenerator() {
                 onChange={(e) => setJobDesc(e.target.value)}
               />
             </Form.Group>
-            <Button variant="primary" type="submit" disabled={loading}>
-              {loading ? "Generating..." : "Submit"}
-            </Button>
+
+            {userDetails ? (
+              userDetails.usedLetters >= userDetails.letterLimit ? (
+                <>
+                  <Button variant="primary" type="submit" disabled>
+                    {loading ? "Generating..." : "Submit"}
+                  </Button>
+                  <Alert variant="danger mt-3">
+                    <Alert.Heading>You've used up your quota</Alert.Heading>
+                    If you want more letters you can sign up to the plus plan.
+                  </Alert>
+                </>
+              ) : (
+                <Button variant="primary" type="submit" disabled={loading}>
+                  {loading ? "Generating..." : "Submit"}
+                </Button>
+              )
+            ) : null}
           </Form>
           {response && (
             <div className="mt-4">
               <h4>Generated Cover Letter:</h4>
-              <p>{response}</p>
+              <p style={{ whiteSpace: "pre-wrap" }}>{response}</p>
             </div>
           )}
         </Col>

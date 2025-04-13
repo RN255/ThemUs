@@ -13,6 +13,7 @@ import LoginScreen from "./pages/LoginScreen";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentCancel from "./pages/PaymentCancel";
 import CoverLetterGenerator from "./pages/CoverLetterGenerator";
+import UserPreviousLetters from "./pages/UserPreviousLetters";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             path="/coverLetterGenerator"
             element={<CoverLetterGenerator />}
           />
+          <Route path="/previousLetters" element={<UserPreviousLetters />} />
         </Routes>
       </BrowserRouter>
       <Footer></Footer>
