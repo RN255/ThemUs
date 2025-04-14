@@ -90,79 +90,96 @@ export default function CoverLetterGenerator() {
           </Nav.Item>
         )}
       </Nav>
-      <Row className="my-5 mb-3">
-        <Col>
-          <h2 className="text-center display-5 mb-4">
-            AI Cover Letter Creator
-          </h2>
-          <p className="text-center fst-italic">
-            Sometimes it's hard to know what to say.
-          </p>
-        </Col>
-      </Row>
-      <Row>
-        <Col className="fst-italic">
-          Number of letters used:{" "}
-          {userDetails ? (
-            userDetails.usedLetters >= userDetails.letterLimit ? (
-              <p className="text-danger d-inline">
-                {userDetails.usedLetters}/{userDetails.letterLimit}
+      <div className="page-fade-in">
+        <Row className="my-5 mb-3">
+          <Col>
+            <h2 className="text-center display-5 mb-4">
+              AI Cover Letter Creator
+            </h2>
+            <p className="text-center fst-italic">
+              Sometimes it's hard to know what to say.
+            </p>
+            {user ? null : (
+              <p className="text-center fst-italic text-danger">
+                Please{" "}
+                <Link to="/loginScreen" className="text-danger">
+                  sign in
+                </Link>{" "}
+                to use this Creator
               </p>
-            ) : (
-              <p className="text-success d-inline">
-                {userDetails.usedLetters}/{userDetails.letterLimit}
-              </p>
-            )
-          ) : null}
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="cvInput">
-              <Form.Label>Put your CV in here:</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={10}
-                value={cvText}
-                onChange={(e) => setCvText(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="jobDescInput">
-              <Form.Label>Put the job description in here:</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={10}
-                value={jobDesc}
-                onChange={(e) => setJobDesc(e.target.value)}
-              />
-            </Form.Group>
+            )}
+          </Col>
+        </Row>
+        {userDetails && (
+          <Row>
+            <Col className="fst-italic">
+              Number of letters used:{" "}
+              {user ? (
+                userDetails.usedLetters >= userDetails.letterLimit ? (
+                  <p className="text-danger d-inline">
+                    {userDetails.usedLetters}/{userDetails.letterLimit}
+                  </p>
+                ) : (
+                  <p className="text-success d-inline">
+                    {userDetails.usedLetters}/{userDetails.letterLimit}
+                  </p>
+                )
+              ) : null}
+            </Col>
+          </Row>
+        )}
+        <Row>
+          <Col>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="cvInput">
+                <Form.Label>Put your CV in here:</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={10}
+                  value={cvText}
+                  onChange={(e) => setCvText(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="jobDescInput">
+                <Form.Label>Put the job description in here:</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={10}
+                  value={jobDesc}
+                  onChange={(e) => setJobDesc(e.target.value)}
+                />
+              </Form.Group>
 
-            {userDetails ? (
-              userDetails.usedLetters >= userDetails.letterLimit ? (
-                <>
-                  <Button variant="primary" type="submit" disabled>
+              {userDetails ? (
+                userDetails.usedLetters >= userDetails.letterLimit ? (
+                  <>
+                    <Button variant="primary" type="submit" disabled>
+                      {loading ? "Generating..." : "Submit"}
+                    </Button>
+                    <p className="text-danger d-inline ms-4">
+                      You've used up your quota
+                    </p>
+                  </>
+                ) : (
+                  <Button variant="primary" type="submit" disabled={loading}>
                     {loading ? "Generating..." : "Submit"}
                   </Button>
-                  <p className="text-danger d-inline ms-4">
-                    You've used up your quota
-                  </p>
-                </>
+                )
               ) : (
-                <Button variant="primary" type="submit" disabled={loading}>
+                <Button variant="primary" type="submit" disabled>
                   {loading ? "Generating..." : "Submit"}
                 </Button>
-              )
-            ) : null}
-          </Form>
-          {response && (
-            <div className="mt-4">
-              <h4>Generated Cover Letter:</h4>
-              <p style={{ whiteSpace: "pre-wrap" }}>{response}</p>
-            </div>
-          )}
-        </Col>
-      </Row>
+              )}
+            </Form>
+            {response && (
+              <div className="mt-4">
+                <h4>Generated Cover Letter:</h4>
+                <p style={{ whiteSpace: "pre-wrap" }}>{response}</p>
+              </div>
+            )}
+          </Col>
+        </Row>
+      </div>
     </Container>
   );
 }

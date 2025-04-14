@@ -43,14 +43,51 @@ export default function UserPreviousLetters() {
     <Container>
       <Nav variant="underline" defaultActiveKey="/previousLetters">
         <Nav.Item>
-          <Nav.Link href="/coverLetterGenerator" className="standardBlueColour">Create</Nav.Link>
+          <Nav.Link href="/coverLetterGenerator" className="standardBlueColour">
+            Create
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link href="/previousLetters">Letter History</Nav.Link>
         </Nav.Item>
       </Nav>
-      <div className="p-4">
+      <div className="p-4 page-fade-in">
         <h2 className="text-xl font-bold mb-4">Your Cover Letters</h2>
+        {/* Pagination controls */}
+        {totalPages > 1 && (
+          <div className="flex gap-2 my-4">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="px-3 py-1 border rounded disabled:opacity-50"
+            >
+              Prev
+            </button>
+
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`px-3 py-1 border rounded ${
+                  currentPage === i + 1 ? "bg-dark text-light" : "bg-light"
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+
+            <button
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+              disabled={currentPage === totalPages}
+              className="px-3 py-1 border rounded disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        )}
+
         {user && user._id ? (
           <>
             {currentItems.length > 0 ? (
@@ -87,7 +124,7 @@ export default function UserPreviousLetters() {
                     key={i}
                     onClick={() => setCurrentPage(i + 1)}
                     className={`px-3 py-1 border rounded ${
-                      currentPage === i + 1 ? "bg-gray-200 font-bold" : ""
+                      currentPage === i + 1 ? "bg-dark text-light" : "bg-light"
                     }`}
                   >
                     {i + 1}
