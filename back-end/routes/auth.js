@@ -26,12 +26,10 @@ router.get(
 // ✅ Logout Route (Fixed for Passport v0.6+)
 router.get("/logout", (req, res, next) => {
   req.logout((err) => {
-    if (err) {
-      return next(err); // Handle errors properly
-    }
+    if (err) return next(err);
     req.session.destroy(() => {
-      // res.redirect("https://www.themus.org/"); // Redirect to frontend after logout
-      res.redirect("http://localhost:3000/"); // Redirect to frontend after login
+      res.clearCookie("connect.sid"); // optional
+      res.status(200).json({ message: "Logged out" }); // ✅ send JSON instead of redirect
     });
   });
 });

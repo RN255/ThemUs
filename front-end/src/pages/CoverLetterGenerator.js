@@ -78,13 +78,17 @@ export default function CoverLetterGenerator() {
 
   return (
     <Container>
-      <Nav variant="tabs" defaultActiveKey="/coverLetterGenerator">
+      <Nav variant="underline" defaultActiveKey="/coverLetterGenerator">
         <Nav.Item>
           <Nav.Link href="/coverLetterGenerator">Create</Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/previousLetters">Letter History</Nav.Link>
-        </Nav.Item>
+        {user && (
+          <Nav.Item>
+            <Nav.Link href="/previousLetters" className="standardBlueColour">
+              Letter History
+            </Nav.Link>
+          </Nav.Item>
+        )}
       </Nav>
       <Row className="my-5 mb-3">
         <Col>

@@ -47,9 +47,7 @@ function HomePage() {
   const { user } = useAuth();
 
   return (
-    <Container className="py-5 my-5">
-      {user && <h3 className="">You are viewing as {user.displayName}</h3>}
-
+    <Container className="py-5 my-5 page-fade-in">
       <Row className="align-items-center">
         <Col
           md={6}
@@ -62,7 +60,7 @@ function HomePage() {
           </Button>
         </Col>
         <Col md={6}>
-          <img src={heroImage} alt="Hero" className="img-fluid rounded" />
+          <Image src={heroImage} alt="Hero" className="img-fluid rounded" />
         </Col>
       </Row>
       <Row className="mt-5 mb-3">

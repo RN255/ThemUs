@@ -1,4 +1,6 @@
 import React from "react";
+import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
+import GoogleSignin from "../assets/googleSignin.png";
 
 export default function LoginScreen() {
   // direct to google OAuth
@@ -8,10 +10,16 @@ export default function LoginScreen() {
   };
 
   return (
-    <div style={{ padding: "2rem", textAlign: "center" }}>
-      <h1>Welcome to ThemUs</h1>
-      <p>Please sign in to continue.</p>
-      <button onClick={handleLogin}>Sign in with Google</button>
-    </div>
+    <Container>
+      <Row>
+        <Col className="text-center my-5">
+          <h2>Welcome to THEM US AI</h2>
+          <p className="text-muted">Please sign in with Google to continue</p>
+          <Button variant="link" onClick={handleLogin}>
+            <Image src={GoogleSignin} className="image-hover-lighten"></Image>
+          </Button>
+        </Col>
+      </Row>
+    </Container>
   );
 }

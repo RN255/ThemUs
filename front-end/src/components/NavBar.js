@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import unionFlagPng from "../assets/united-kingdom.png";
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function ColorSchemesExample() {
   const today = new Intl.DateTimeFormat("en-GB", { dateStyle: "full" }).format(
@@ -12,6 +13,12 @@ function ColorSchemesExample() {
   );
 
   const { user, loading, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/"); // or wherever you want
+  };
 
   return (
     <>
@@ -51,7 +58,7 @@ function ColorSchemesExample() {
                 ) : user ? (
                   <>
                     Hello, {user.displayName}
-                    <Nav.Link className="d-inline-block" onClick={logout}>
+                    <Nav.Link className="d-inline-block" onClick={handleLogout}>
                       Sign Out
                     </Nav.Link>
                   </>
@@ -59,26 +66,6 @@ function ColorSchemesExample() {
                   <Nav.Link href="/loginScreen">Log in</Nav.Link>
                 )}
               </Navbar.Text>
-              {/* {user ? (
-                <>
-                  <Navbar.Text> */}
-              {/* Signed in as: {user.displayName} */}
-              {/* <button onClick={handleLogout}>Sign Out</button> */}
-              {/* <Nav.Link
-                      className="d-inline-block item-fade-in"
-                      onClick={handleLogout}
-                    >
-                      Sign Out
-                    </Nav.Link>{" "}
-                  </Navbar.Text>
-                </>
-              ) : (
-                <>
-                  <Navbar.Text>
-                    <Nav.Link href="/loginScreen">Log in</Nav.Link>{" "}
-                  </Navbar.Text>
-                </>
-              )} */}
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -43,7 +43,7 @@ export default function UserPreviousLetters() {
     <Container>
       <Nav variant="underline" defaultActiveKey="/previousLetters">
         <Nav.Item>
-          <Nav.Link href="/coverLetterGenerator">Create</Nav.Link>
+          <Nav.Link href="/coverLetterGenerator" className="standardBlueColour">Create</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link href="/previousLetters">Letter History</Nav.Link>
