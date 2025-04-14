@@ -189,3 +189,9 @@ body.modal-open {
   color: white;
   padding: 60px 0;
 }
+
+/* nav bar  */
+
+.minWidth100px {
+  min-width: 100px;
+}

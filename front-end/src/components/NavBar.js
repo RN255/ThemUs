@@ -13,12 +13,6 @@ function ColorSchemesExample() {
 
   const { user, loading, logout } = useAuth();
 
-  // Handle logout
-  const handleLogout = async () => {
-    await logout();
-    window.location.href = "/"; // or redirect wherever you want
-  };
-
   return (
     <>
       <Navbar
@@ -50,21 +44,14 @@ function ColorSchemesExample() {
               <Navbar.Text className="d-none d-lg-block">
                 {today}
                 <span className="d-none d-lg-inline mx-2">|</span>
-                {/* <img
-                  alt="union flag"
-                  src={unionFlagPng}
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top ms-3 border"
-                />{" "} */}
               </Navbar.Text>
-              <Navbar.Text>
+              <Navbar.Text className="minWidth100px">
                 {loading ? (
-                  <span className="text-muted">Loading...</span>
+                  <Nav.Link>Log in</Nav.Link>
                 ) : user ? (
                   <>
                     Hello, {user.displayName}
-                    <Nav.Link className="d-inline-block" onClick={handleLogout}>
+                    <Nav.Link className="d-inline-block" onClick={logout}>
                       Sign Out
                     </Nav.Link>
                   </>
