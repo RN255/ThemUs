@@ -29,7 +29,12 @@ router.get("/user/:userId", async (req, res) => {
 
     if (!user) return res.status(404).json({ error: "User not found" });
 
-    res.json(user.coverLetters); // Send all cover letters
+    // 🧠 Sort embedded cover letters by createdAt DESC (newest first)
+    const sortedLetters = [...user.coverLetters].sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+
+    res.json(sortedLetters);
   } catch (err) {
     console.error("Error fetching user cover letters:", err);
     res.status(500).json({ error: "Server error" });

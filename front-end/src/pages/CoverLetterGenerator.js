@@ -76,6 +76,14 @@ export default function CoverLetterGenerator() {
     setRefreshUser((prev) => !prev); // 👈 toggle to re-trigger useEffect
   };
 
+  // word limit counter
+  const maxChars = 6000; // or whatever limit you want
+
+  const cvChars = cvText.length;
+  const jobChars = jobDesc.length;
+
+  const isValid = cvChars <= maxChars && jobChars <= maxChars;
+
   return (
     <Container>
       <Nav variant="underline" defaultActiveKey="/coverLetterGenerator">
@@ -133,22 +141,35 @@ export default function CoverLetterGenerator() {
           <Col>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="cvInput">
-                <Form.Label>Put your CV in here:</Form.Label>
+                <Form.Label>Enter your CV in here:</Form.Label>
                 <Form.Control
+                  required
                   as="textarea"
                   rows={10}
                   value={cvText}
                   onChange={(e) => setCvText(e.target.value)}
                 />
+                <div className={cvChars > maxChars ? "text-danger" : ""}>
+                  {cvChars} / {maxChars} characters
+                </div>
               </Form.Group>
               <Form.Group className="mb-3" controlId="jobDescInput">
-                <Form.Label>Put the job description in here:</Form.Label>
+                <Form.Label>Enter the job description in here:</Form.Label>
                 <Form.Control
+                  required
                   as="textarea"
                   rows={10}
                   value={jobDesc}
                   onChange={(e) => setJobDesc(e.target.value)}
                 />
+                <div className={jobChars > maxChars ? "text-danger" : ""}>
+                  {jobChars} / {maxChars} characters
+                </div>
+                {!isValid && (
+                  <p className="text-danger">
+                    CV or job description is too long.
+                  </p>
+                )}
               </Form.Group>
 
               {userDetails ? (
@@ -162,7 +183,11 @@ export default function CoverLetterGenerator() {
                     </p>
                   </>
                 ) : (
-                  <Button variant="primary" type="submit" disabled={loading}>
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    disabled={!isValid || loading}
+                  >
                     {loading ? "Generating..." : "Submit"}
                   </Button>
                 )

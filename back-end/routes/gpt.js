@@ -16,6 +16,22 @@ router.post("/generate", requireAuth, async (req, res) => {
   const { cvText, jobDesc } = req.body;
   const userId = req.user._id;
 
+  // ✅ Character limit enforcement
+  const maxCvChars = 6000;
+  const maxJobDescChars = 4000;
+
+  if (!cvText || !jobDesc) {
+    return res
+      .status(400)
+      .json({ error: "CV and job description are required." });
+  }
+
+  if (cvText.length > maxCvChars || jobDesc.length > maxJobDescChars) {
+    return res.status(400).json({
+      error: `CV must be under ${maxCvChars} characters and job description under ${maxJobDescChars}.`,
+    });
+  }
+
   try {
     const user = await User.findById(userId);
 
