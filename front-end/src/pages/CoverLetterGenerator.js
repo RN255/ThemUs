@@ -3,6 +3,7 @@ import { Container, Row, Col, Form, Button, Nav } from "react-bootstrap";
 import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import LetterGeneratorFeatures from "../components/LetterGeneratorFeatures";
 
 export default function CoverLetterGenerator() {
   const [cvText, setCvText] = useState("");
@@ -36,13 +37,12 @@ export default function CoverLetterGenerator() {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent page refresh
     setLoading(true);
-    const prompt = `Write a cover letter based on this CV:\n${cvText}\nAnd this job description:\n${jobDesc}`;
 
     try {
       const res = await axios.post(
         // "https://themus.onrender.com/api/gpt/generate",
         "http://localhost:5000/api/gpt/generate",
-        { prompt },
+        { cvText, jobDesc },
         {
           withCredentials: true, // ✅ Crucial
           headers: { "Content-Type": "application/json" },
@@ -100,7 +100,7 @@ export default function CoverLetterGenerator() {
               Sometimes it's hard to know what to say.
             </p>
             {user ? null : (
-              <p className="text-center fst-italic text-danger">
+              <p className="text-center fst-italic text-danger mb-1">
                 Please{" "}
                 <Link to="/loginScreen" className="text-danger">
                   sign in
@@ -110,6 +110,7 @@ export default function CoverLetterGenerator() {
             )}
           </Col>
         </Row>
+        <LetterGeneratorFeatures></LetterGeneratorFeatures>
         {userDetails && (
           <Row>
             <Col className="fst-italic">

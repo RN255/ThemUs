@@ -13,7 +13,7 @@ router.use((req, res, next) => {
 
 router.post("/generate", requireAuth, async (req, res) => {
   console.log("🔍 Inside /generate — req.user:", req.user);
-  const { prompt } = req.body;
+  const { cvText, jobDesc } = req.body;
   const userId = req.user._id;
 
   try {
@@ -37,6 +37,19 @@ router.post("/generate", requireAuth, async (req, res) => {
           "You have reached your monthly cover letter limit. Upgrade your plan to continue.",
       });
     }
+
+    // 🔐 Build the prompt securely on the backend
+    const prompt = `
+    Write a professional and personalised cover letter tailored to this job description, using the following CV. Use British English spelling and phrasing throughout:
+
+    CV:
+    ${cvText}
+
+    Job Description:
+    ${jobDesc}
+
+    The tone should be formal yet enthusiastic. Keep it concise (max one page), and highlight relevant experience. End with a confident closing statement.
+    `;
 
     // Generate with OpenAI
     const chatCompletion = await openai.chat.completions.create({

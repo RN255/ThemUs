@@ -48,10 +48,10 @@ function ColorSchemesExample() {
               <Nav.Link href="/info" className="d-inline">
                 Info <span className="d-none d-lg-inline">|</span>
               </Nav.Link>
-              <Navbar.Text className="d-none d-lg-block">
+              {/* <Navbar.Text className="d-none d-lg-block">
                 {today}
                 <span className="d-none d-lg-inline mx-2">|</span>
-              </Navbar.Text>
+              </Navbar.Text> */}
               <Navbar.Text className="minWidth100px">
                 {loading ? (
                   <Nav.Link>Log in</Nav.Link>
