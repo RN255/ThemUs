@@ -10,34 +10,41 @@ const ensureAuth = (req, res, next) => {
     .json({ error: "You must be logged in to make a payment." });
 };
 
-router.post("/create-checkout-session", ensureAuth, async (req, res) => {
-  try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      mode: "payment",
-      customer_email: req.user.email,
-      line_items: [
-        {
-          price_data: {
-            currency: "gbp",
-            product_data: {
-              name: "ThemUs Premium Access",
-              description: "Unlock all premium features",
+router.post(
+  "/create-checkout-session",
+  ensureAuth,
+  async (req, res) => {
+    try {
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        mode: "payment",
+        customer_email: req.user.email,
+        line_items: [
+          {
+            price_data: {
+              currency: "gbp",
+              product_data: {
+                name: "ThemUs Premium Access",
+                description: "Unlock all premium features",
+              },
+              unit_amount: 500, // £5.00 in pence
             },
-            unit_amount: 500, // £5.00 in pence
+            quantity: 1,
           },
-          quantity: 1,
+        ],
+        metadata: {
+          userId: req.user._id.toString(), // Add this to update user later!
         },
-      ],
-      success_url: "https://www.themus.org/payment-success",
-      cancel_url: "https://www.themus.org/payment-cancel",
-    });
+        success_url: "http://localhost:3000/payment-success",
+        cancel_url: "http://localhost:3000/payment-cancel",
+      });
 
-    res.json({ url: session.url });
-  } catch (error) {
-    console.error("Stripe session error:", error);
-    res.status(500).json({ error: error.message });
+      res.json({ url: session.url });
+    } catch (error) {
+      console.error("Stripe session error:", error);
+      res.status(500).json({ error: error.message });
+    }
   }
-});
+);
 
 module.exports = router;

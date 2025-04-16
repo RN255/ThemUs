@@ -1,29 +1,23 @@
 import React from "react";
 import { Row, Col, Card, Button, Container } from "react-bootstrap";
 import { BsCheck2 } from "react-icons/bs";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function PricingCoverLetter() {
-  const plans = [
-    {
-      title: "Free",
-      subtitle: "Perfect if you want to try or you don't need many letters",
-      price: 0,
-      features: ["3 letters/month", "online letter storage"],
-      button: "Continue",
-      btnVariant: "outline-primary",
-      linkTo: "/loginScreen",
-    },
-    {
-      title: "Pro",
-      subtitle: "If you really need that job and you want a lot of letters",
-      price: 2.99,
-      features: ["100 letters/month", "online letter storage", "email support"],
-      button: "Get started",
-      btnVariant: "outline-primary",
-      linkTo: "/coverLetterCreator",
-    },
-  ];
+  const handleCheckout = async () => {
+    try {
+      const { data } = await axios.post(
+        `http://localhost:5000/payment/create-checkout-session`,
+        {},
+        { withCredentials: true }
+      );
+      window.location.href = data.url; // Stripe checkout page
+    } catch (error) {
+      console.error("Error redirecting to Stripe:", error);
+      alert("Could not start payment process. Please try again.");
+    }
+  };
 
   return (
     <Container>
@@ -33,52 +27,74 @@ export default function PricingCoverLetter() {
         </Col>
       </Row>
       <Row xs={1} md={2} className="mt-3 mb-5 justify-content-center">
-        {plans.map(
-          (
-            { title, subtitle, price, features, button, btnVariant, linkTo },
-            i
-          ) => (
-            <Col
-              key={i}
-              className="px-5 d-flex col-lg-4 justify-content-center"
-            >
-              <Card
-                className="mb-4 shadow-sm rounded-3"
-                style={{ maxWidth: "20rem", width: "100%" }}
-              >
-                <Card.Body className="d-flex flex-column">
-                  <Card.Title className="">{title}</Card.Title>
-                  <Card.Subtitle className="mb-2 fw-light">
-                    {subtitle}
-                  </Card.Subtitle>
+        <Col className="px-5 d-flex col-lg-4 justify-content-center">
+          <Card
+            className="mb-4 shadow-sm rounded-3"
+            style={{ maxWidth: "20rem", width: "100%" }}
+          >
+            <Card.Body className="d-flex flex-column">
+              <Card.Title className="standardBlueColour mb-3">Free</Card.Title>
+              <Card.Subtitle className="mb-3 fw-light">
+                Perfect if you want to try or you don't need many letters
+              </Card.Subtitle>
 
-                  <Card.Title className="pricing-card-title">
-                    £{price}
-                    <small className="text-muted fw-light">/month</small>
-                  </Card.Title>
-                  <ul className="list-unstyled mt-3 mb-4">
-                    {features.map((feature, idx) => (
-                      <li key={idx}>
-                        {" "}
-                        <BsCheck2 size={20} className="me-2" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    variant={btnVariant}
-                    size="lg"
-                    className="w-100 mt-auto"
-                    as={Link}
-                    to={linkTo}
-                  >
-                    {button}
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          )
-        )}
+              <Card.Title className="pricing-card-title">
+                £0
+                <small className="text-muted fw-light"> / month</small>
+              </Card.Title>
+              <ul className="list-unstyled mt-3 mb-4">
+                <li>
+                  <BsCheck2 size={20} className="me-2" />3 letters/month
+                </li>
+                <li>
+                  <BsCheck2 size={20} className="me-2" />
+                  online letter storage
+                </li>
+              </ul>
+              <Link to="/loginScreen">Continue</Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col className="px-5 d-flex col-lg-4 justify-content-center">
+          <Card
+            className="mb-4 shadow-sm rounded-3"
+            style={{ maxWidth: "20rem", width: "100%" }}
+          >
+            <Card.Body className="d-flex flex-column">
+              <Card.Title className="standardBlueColour mb-3">Pro</Card.Title>
+              <Card.Subtitle className="mb-3 fw-light">
+                If you really need that job and you want a lot of letters
+              </Card.Subtitle>
+
+              <Card.Title className="pricing-card-title">
+                £2.99
+                <small className="text-muted fw-light"> / month</small>
+              </Card.Title>
+              <ul className="list-unstyled mt-3 mb-4">
+                <li>
+                  <BsCheck2 size={20} className="me-2" />
+                  100 letters/month
+                </li>
+                <li>
+                  <BsCheck2 size={20} className="me-2" />
+                  online letter storage
+                </li>
+                <li>
+                  <BsCheck2 size={20} className="me-2" />
+                  email support
+                </li>
+              </ul>
+              <Button
+                variant="button-outline"
+                size="lg"
+                className="w-100 mt-auto"
+                onClick={handleCheckout}
+              >
+                Get started
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
       </Row>
     </Container>
   );
