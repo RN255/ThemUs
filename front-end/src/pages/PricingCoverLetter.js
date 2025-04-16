@@ -51,7 +51,12 @@ export default function PricingCoverLetter() {
                   online letter storage
                 </li>
               </ul>
-              <Link to="/loginScreen">Continue</Link>
+              <Link
+                to="/loginScreen"
+                className="btn btn-outline-primary mt-auto btn-lg"
+              >
+                Continue
+              </Link>
             </Card.Body>
           </Card>
         </Col>
@@ -85,7 +90,7 @@ export default function PricingCoverLetter() {
                 </li>
               </ul>
               <Button
-                variant="button-outline"
+                variant="btn btn-outline-primary"
                 size="lg"
                 className="w-100 mt-auto"
                 onClick={handleCheckout}

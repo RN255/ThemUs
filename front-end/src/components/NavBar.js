@@ -39,26 +39,32 @@ function ColorSchemesExample() {
             </Nav>
 
             <Nav className="flex-grow-1 d-flex justify-content-center navbar-fade-in">
-              <Nav.Link href="/coverLetterCreator" className="d-inline">
+              <Nav.Link
+                href="/coverLetterCreator"
+                className="d-inline text-center"
+              >
                 Cover Letter Creator
               </Nav.Link>
             </Nav>
 
             <Nav className="flex-grow-1 d-flex justify-content-end align-items-center">
               <Nav.Link href="/info" className="d-inline">
-                Info <span className="d-none d-lg-inline">|</span>
+                Info
               </Nav.Link>
               {/* <Navbar.Text className="d-none d-lg-block">
                 {today}
                 <span className="d-none d-lg-inline mx-2">|</span>
               </Navbar.Text> */}
-              <Navbar.Text className="minWidth100px">
+              <Navbar.Text className="minWidth100px text-center">
                 {loading ? (
                   <Nav.Link>Log in</Nav.Link>
                 ) : user ? (
                   <>
                     Hello, {user.displayName}
-                    <Nav.Link className="d-inline-block" onClick={handleLogout}>
+                    <Nav.Link
+                      className="d-inline-block ms-1"
+                      onClick={handleLogout}
+                    >
                       Sign Out
                     </Nav.Link>
                   </>

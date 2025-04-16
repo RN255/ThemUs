@@ -1,18 +1,14 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 
 import { Container, Row, Col, Button, Card, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
-import PaginatedTopicList from "../components/PaginatedTopicList";
-import NewsDisplay from "../components/NewsDisplay";
 
 import heroImage from "../assets/roboComputer.png";
 import robotCardOne from "../assets/robotCardOne.png";
 import robotCardTwo from "../assets/robotCardTwo.png";
 import robotCardThree from "../assets/robotCardThree.png";
 import ThemUsScreenshotSmaller from "../assets/ThemUsScreenshotSmaller.jpg";
-
-import axios from "axios";
+import robot_writing from "../assets/robot_writing.png";
 
 import { useAuth } from "../contexts/AuthContext";
 
@@ -36,9 +32,10 @@ const features = [
 
 const services = [
   {
-    title: "CV writer",
-    text: "Write a CV in British English using AI.",
+    title: "Cover Letter Creator",
+    text: "Write a cover letter in British English using AI.",
     link: "/coverLetterGenerator",
+    image: robot_writing,
   },
 ];
 
@@ -55,9 +52,12 @@ function HomePage() {
         >
           <h1 className="display-4 align-items-center">THEM US AI</h1>
           <p className="lead">Use AI in a faster, smarter way</p>
-          <Button variant="primary" size="lg" className="my-2">
+          <Link
+            to="/coverLetterCreator"
+            className="btn btn-outline-primary mt-auto btn-lg"
+          >
             Get Started
-          </Button>
+          </Link>
         </Col>
         <Col md={6}>
           <Image src={heroImage} alt="Hero" className="img-fluid rounded" />
@@ -127,63 +127,25 @@ function HomePage() {
         >
           <Col>
             <Link to={services.link} className="text-decoration-none">
-              <Card
-                className="h-100 text-white bg-dark rounded-5 shadow-lg card-cover overflow-hidden"
-                style={{
-                  backgroundImage: `url(${heroImage})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <div className="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                  <h2 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
-                    {services.title}{" "}
-                  </h2>
-                  <p>{services.text}</p>
-
-                  {/* <ul className="d-flex list-unstyled mt-auto">
-                  <li className="me-auto">
-                    <img
-                      src={heroImage}
-                      alt="Bootstrap"
-                      width={32}
-                      height={32}
-                      roundedCircle
-                      className="border border-white"
-                    />
-                  </li>
-                  <li className="d-flex align-items-center me-3">
-                    <svg className="bi me-2" width="1em" height="1em">
-                      <use xlinkHref="#geo-fill" />
-                    </svg>
-                    <small>Earth</small>
-                  </li>
-                  <li className="d-flex align-items-center">
-                    <svg className="bi me-2" width="1em" height="1em">
-                      <use xlinkHref="#calendar3" />
-                    </svg>
-                    <small>3d</small>
-                  </li>
-                </ul> */}
-                </div>
+              <Card style={{ width: "18rem", backgroundColor: "white" }}>
+                <Card.Img
+                  variant="top"
+                  src={services.image}
+                  style={{ backgroundColor: "white" }}
+                />
+                <Card.Body>
+                  <Card.Subtitle className="mb-2 text-muted standardBlueColour">
+                    Card Subtitle
+                  </Card.Subtitle>
+                  <Card.Title>{services.title}</Card.Title>
+                  <Card.Text>{services.text}</Card.Text>
+                  <Button variant="outline-primary w-100">Let's begin</Button>
+                </Card.Body>
               </Card>
             </Link>
           </Col>
         </Row>
       ))}
-
-      {/* <Row>
-        {services.map((services, idx) => (
-          <Col key={idx} md={4} className="mb-4">
-            <Card className="h-100 shadow-sm">
-              <Card.Body>
-                <Card.Title>{services.title}</Card.Title>
-                <Card.Text>{services.text}</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row> */}
 
       <div className="px-4 pt-5 my-5 text-center border-bottom">
         <h2 className="display-5 fw-bold mb-4">We hope you find value</h2>
