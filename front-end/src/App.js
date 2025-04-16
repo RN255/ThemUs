@@ -14,6 +14,7 @@ import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentCancel from "./pages/PaymentCancel";
 import CoverLetterGenerator from "./pages/CoverLetterGenerator";
 import UserPreviousLetters from "./pages/UserPreviousLetters";
+import PricingCoverLetter from "./pages/PricingCoverLetter";
 
 function App() {
   return (
@@ -28,10 +29,11 @@ function App() {
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/payment-cancel" element={<PaymentCancel />} />
           <Route
-            path="/coverLetterGenerator"
+            path="/coverLetterCreator"
             element={<CoverLetterGenerator />}
           />
           <Route path="/previousLetters" element={<UserPreviousLetters />} />
+          <Route path="/pricingCoverLetter" element={<PricingCoverLetter />} />
         </Routes>
       </BrowserRouter>
       <Footer></Footer>

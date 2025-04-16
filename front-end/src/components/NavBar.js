@@ -39,7 +39,7 @@ function ColorSchemesExample() {
             </Nav>
 
             <Nav className="flex-grow-1 d-flex justify-content-center navbar-fade-in">
-              <Nav.Link href="/coverLetterGenerator" className="d-inline">
+              <Nav.Link href="/coverLetterCreator" className="d-inline">
                 Cover Letter Creator
               </Nav.Link>
             </Nav>

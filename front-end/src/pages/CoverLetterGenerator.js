@@ -110,12 +110,19 @@ export default function CoverLetterGenerator() {
             {user ? null : (
               <p className="text-center fst-italic text-danger mb-1">
                 Please{" "}
-                <Link to="/loginScreen" className="text-danger">
-                  sign in
+                <Link to="/pricingCoverLetter" className="text-danger">
+                  register
                 </Link>{" "}
                 to use this Creator
               </p>
             )}
+            <p className="text-center fst-italic text-danger mb-1">
+              Please{" "}
+              <Link to="/pricingCoverLetter" className="text-danger">
+                pay
+              </Link>{" "}
+              to use more letters
+            </p>
           </Col>
         </Row>
         <LetterGeneratorFeatures></LetterGeneratorFeatures>
