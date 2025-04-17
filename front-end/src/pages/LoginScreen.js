@@ -13,7 +13,9 @@ export default function LoginScreen() {
     <Container>
       <Row>
         <Col className="text-center my-5">
-          <h2>Welcome to THEM US AI</h2>
+          <h2>
+            Welcome to <span className="fw-light">THEM US AI</span>
+          </h2>
           <p className="text-muted">Please sign in with Google to continue</p>
           <Button variant="link" onClick={handleLogin}>
             <Image src={GoogleSignin} className="image-hover-lighten"></Image>

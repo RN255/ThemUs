@@ -34,7 +34,7 @@ const services = [
   {
     title: "Cover Letter Creator",
     text: "Write a cover letter in British English using AI.",
-    link: "/coverLetterGenerator",
+    link: "/coverLetterCreator",
     image: robot_writing,
   },
 ];

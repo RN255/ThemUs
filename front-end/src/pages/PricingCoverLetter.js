@@ -4,6 +4,8 @@ import { BsCheck2 } from "react-icons/bs";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import { useAuth } from "../contexts/AuthContext";
+
 export default function PricingCoverLetter() {
   const handleCheckout = async () => {
     try {
@@ -18,6 +20,9 @@ export default function PricingCoverLetter() {
       alert("Could not start payment process. Please try again.");
     }
   };
+
+  // is signed in as user?
+  const { user } = useAuth();
 
   return (
     <Container>
@@ -37,7 +42,6 @@ export default function PricingCoverLetter() {
               <Card.Subtitle className="mb-3 fw-light">
                 Perfect if you want to try or you don't need many letters
               </Card.Subtitle>
-
               <Card.Title className="pricing-card-title">
                 £0
                 <small className="text-muted fw-light"> / month</small>
@@ -51,12 +55,13 @@ export default function PricingCoverLetter() {
                   online letter storage
                 </li>
               </ul>
-              <Link
-                to="/loginScreen"
-                className="btn btn-outline-primary mt-auto btn-lg"
+              <Button
+                variant="btn btn-outline-primary disabled"
+                size="lg"
+                className="w-100 mt-auto"
               >
-                Continue
-              </Link>
+                Free
+              </Button>
             </Card.Body>
           </Card>
         </Col>
@@ -89,13 +94,14 @@ export default function PricingCoverLetter() {
                   email support
                 </li>
               </ul>
+
               <Button
                 variant="btn btn-outline-primary"
                 size="lg"
                 className="w-100 mt-auto"
                 onClick={handleCheckout}
               >
-                Get started
+                Upgrade
               </Button>
             </Card.Body>
           </Card>
