@@ -21,9 +21,19 @@ const UserSchema = new mongoose.Schema(
     usedLetters: { type: Number, default: 0 },
     letterLimit: { type: Number, default: 3 },
     renewsAt: { type: Date },
+    subscriptionId: { type: String },
     coverLetters: [coverLetterSchema],
   },
   { timestamps: true }
 );
+
+UserSchema.pre("findOneAndUpdate", function () {
+  const update = this.getUpdate();
+
+  if (update && update.letterLimit === 50) {
+    console.log("👀 Detected letterLimit being set to 50!");
+    console.log("🧠 Stack trace:\n", new Error().stack);
+  }
+});
 
 module.exports = mongoose.model("User", UserSchema);

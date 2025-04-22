@@ -1,21 +1,25 @@
 import React from "react";
 
 import { Container, Row, Col } from "react-bootstrap";
-import {
-  BsBootstrap,
-  BsCpuFill,
-  BsCalendar3,
-  BsHouse,
-  BsSpeedometer2,
-  BsToggles2,
-  BsGeoFill,
-  BsTools,
-} from "react-icons/bs";
+import { BsBootstrap, BsCpuFill, BsCalendar3, BsHouse } from "react-icons/bs";
+import unionFlagIcon from "../assets/union_jack_icon.png";
 
 const features = [
   {
     title: "British English",
-    icon: <BsBootstrap size="1.75em" className="text-muted" />,
+    icon: (
+      <img
+        src={unionFlagIcon}
+        alt="UK flag"
+        style={{
+          width: "1.75em",
+          height: "1.75em",
+          objectFit: "contain",
+          display: "block",
+          filter: "grayscale(100%)",
+        }}
+      />
+    ),
     text: "Create cover letters using British English.",
   },
   {

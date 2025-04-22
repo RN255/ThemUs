@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Card, Button, Container } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
+import axios from "axios";
 
 export default function UserProfile() {
   // is signed in as user?
   const { user } = useAuth();
+
+  const [status, setStatus] = useState(null);
+
+  const handleCancel = async () => {
+    try {
+      const res = await axios.post(
+        "/api/cancel-subscription",
+        {},
+        { withCredentials: true }
+      );
+
+      if (res.data.message) {
+        setStatus(
+          "Your subscription will be canceled at the end of the billing period."
+        );
+      }
+    } catch (err) {
+      console.error("Error cancelling subscription:", err);
+      setStatus("Something went wrong. Please try again.");
+    }
+  };
 
   if (!user) {
     return (
@@ -43,7 +65,7 @@ export default function UserProfile() {
                 className="w-100"
                 onClick={
                   user.plan === "premium"
-                    ? () => console.log("Cancel subscription")
+                    ? handleCancel
                     : () => console.log("Upgrade to premium")
                 }
               >
@@ -51,6 +73,7 @@ export default function UserProfile() {
                   ? "Cancel Subscription"
                   : "Upgrade to Premium"}
               </Button>
+              {status && <p>{status}</p>}
             </Card.Body>
           </Card>
         </Col>

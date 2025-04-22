@@ -10,7 +10,7 @@ const entryRoutes = require("./routes/entryRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const newsRoutes = require("./routes/newsRoutes");
 require("./config/passport"); // Load Passport config
-const coverLetterRoutes = require('./routes/coverLetters');
+const coverLetterRoutes = require("./routes/coverLetters");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -68,7 +68,8 @@ app.use("/api/news", newsRoutes);
 app.use("/auth", require("./routes/auth"));
 app.use("/payment", require("./routes/payment"));
 app.use("/users", require("./routes/users"));
-app.use('/api/coverLetters', coverLetterRoutes);
+app.use("/api/coverLetters", coverLetterRoutes);
+app.use("/cancel-subscription", require("./routes/cancel-subscription"));
 
 // ✅ Debug Route to Check Authentication
 app.get("/auth/user", (req, res) => {
