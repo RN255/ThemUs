@@ -12,7 +12,7 @@ export default function UserProfile() {
   const handleCancel = async () => {
     try {
       const res = await axios.post(
-        "/api/cancel-subscription",
+        "http://localhost:5000/cancel-subscription",
         {},
         { withCredentials: true }
       );
