@@ -143,6 +143,10 @@ html {
   border: #6ea8ff 1px solid !important;
 }
 
+.btn-outline-primary {
+  border: #6ea8ff 1px solid !important;
+}
+
 .btn-outline-primary:hover {
   background-color: #6ea8ff !important;
   border: #6ea8ff 1px solid !important;

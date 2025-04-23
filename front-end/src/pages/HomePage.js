@@ -56,7 +56,7 @@ function HomePage() {
             to="/coverLetterCreator"
             className="btn btn-outline-primary mt-auto btn-lg"
           >
-            Get Started
+            Create a cover letter
           </Link>
         </Col>
         <Col md={6}>

@@ -22,6 +22,14 @@ const UserSchema = new mongoose.Schema(
     letterLimit: { type: Number, default: 3 },
     renewsAt: { type: Date },
     subscriptionId: { type: String },
+    subscriptionStatus: {
+      type: String,
+      enum: ["active", "cancelling", "cancelled"],
+      default: "free",
+    },
+    subscriptionEndsAt: {
+      type: Date,
+    },
     coverLetters: [coverLetterSchema],
   },
   { timestamps: true }
