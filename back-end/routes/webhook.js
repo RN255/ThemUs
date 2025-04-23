@@ -92,35 +92,37 @@ router.post(
 
     if (event.type === "customer.subscription.updated") {
       const subscription = event.data.object;
-      const customerId = subscription.customer;
-    
+      const customerId = subscription.customer; // This is a string like "cus_abc123"
+
       try {
+        // Fetch full customer to get their email
         const customer = await stripe.customers.retrieve(customerId);
         const email = customer.email;
-    
+
         if (email) {
           const cancelAtPeriodEnd = subscription.cancel_at_period_end;
           const currentPeriodEnd = subscription.current_period_end;
-    
+
           await User.findOneAndUpdate(
             { email },
             {
               subscriptionStatus: cancelAtPeriodEnd ? "cancelling" : "active",
-              subscriptionEndsAt: cancelAtPeriodEnd ? new Date(currentPeriodEnd * 1000) : null,
+              subscriptionEndsAt: cancelAtPeriodEnd
+                ? new Date(currentPeriodEnd * 1000) // convert from UNIX timestamp
+                : null,
             }
           );
-    
+
           console.log(
-            `✅ Updated subscription status for ${email} — ${
+            `✅ Updated user ${email}: ${
               cancelAtPeriodEnd ? "cancelling" : "active"
-            }`
+            }, ends at ${new Date(currentPeriodEnd * 1000)}`
           );
         }
       } catch (err) {
-        console.error("❌ Failed to handle subscription update:", err);
+        console.error("❌ Error updating user from subscription.updated", err);
       }
     }
-    
 
     res.status(200).json({ received: true });
   }

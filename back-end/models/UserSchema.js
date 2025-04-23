@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema(
     subscriptionId: { type: String },
     subscriptionStatus: {
       type: String,
-      enum: ["active", "cancelling", "cancelled"],
+      enum: ["free", "active", "cancelling", "cancelled"],
       default: "free",
     },
     subscriptionEndsAt: {
