@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Card, Button, Container } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
 
 export default function UserProfile() {
   // is signed in as user?
@@ -10,6 +12,11 @@ export default function UserProfile() {
   const [refreshUser, setRefreshUser] = useState(false); // 👈 trigger flag
 
   const [status, setStatus] = useState(null);
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleCancel = async () => {
     try {
@@ -23,6 +30,14 @@ export default function UserProfile() {
         setStatus(
           "Your subscription will be canceled at the end of the billing period."
         );
+
+        // 🧠 Optimistically update the local userDetails state
+        setUserDetails((prev) => ({
+          ...prev,
+          subscriptionStatus: "cancelling",
+        }));
+
+        handleClose();
       }
     } catch (err) {
       console.error("Error cancelling subscription:", err);
@@ -81,38 +96,79 @@ export default function UserProfile() {
                 {/* <Button variant="outline-primary" className="mb-2 w-100">
                 Edit Profile
               </Button> */}
-                <Button
-                  variant={
-                    userDetails.plan === "premium" ? "danger" : "primary"
-                  }
-                  className="w-100"
-                  onClick={
-                    userDetails.plan === "premium"
-                      ? handleCancel
-                      : () => console.log("Upgrade to premium")
-                  }
-                >
-                  {userDetails.plan === "premium"
-                    ? "Cancel Subscription"
-                    : "Upgrade to Premium"}
-                </Button>
+                {userDetails.plan === "free" && (
+                  <Link to="/pricingCoverLetter">
+                    <Button>Upgrade to Premium</Button>
+                  </Link>
+                )}
+                {userDetails.plan === "premium" && (
+                  <Button
+                    variant={
+                      userDetails.plan === "premium" &&
+                      userDetails.subscriptionStatus === "active"
+                        ? "danger"
+                        : "primary"
+                    }
+                    className="w-100"
+                    onClick={
+                      userDetails.plan === "premium" &&
+                      userDetails.subscriptionStatus === "active"
+                        ? handleShow
+                        : null
+                    }
+                    disabled={
+                      userDetails.plan === "premium" &&
+                      userDetails.subscriptionStatus === "cancelling"
+                    }
+                  >
+                    {userDetails.plan === "premium" &&
+                      userDetails.subscriptionStatus === "active" &&
+                      "Cancel Subscription"}
+                    {userDetails.plan === "premium" &&
+                      userDetails.subscriptionStatus === "cancelling" &&
+                      "Already Cancelling"}
+                  </Button>
+                )}
+
                 {status && <p>{status}</p>}
-                <p>
-                  {userDetails?.subscriptionStatus === "cancelling" && (
+                {userDetails?.subscriptionStatus === "cancelling" &&
+                  userDetails.subscriptionEndsAt &&
+                  !isNaN(new Date(userDetails.subscriptionEndsAt)) && (
                     <p>
                       Your subscription will end on{" "}
                       {new Date(
                         userDetails.subscriptionEndsAt
-                      ).toLocaleDateString()}
+                      ).toLocaleDateString("en-GB", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
                       .
                     </p>
                   )}
-                </p>
               </Card.Body>
             </Card>
           )}
         </Col>
       </Row>
+      <Modal show={show} onHide={handleClose} keyboard={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cancel subscription</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to cancel your subscription?
+        </Modal.Body>
+        <Modal.Footer>
+          <div className="d-flex justify-content-between w-100">
+            <Button variant="outline-primary" onClick={handleClose}>
+              No, I don't want to cancel
+            </Button>
+            <Button variant="danger" onClick={handleCancel}>
+              Yes, I want to cancel
+            </Button>
+          </div>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }
