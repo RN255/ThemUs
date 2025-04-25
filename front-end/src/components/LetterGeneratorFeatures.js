@@ -1,7 +1,11 @@
 import React from "react";
 
 import { Container, Row, Col } from "react-bootstrap";
-import { BsBootstrap, BsCpuFill, BsCalendar3, BsHouse } from "react-icons/bs";
+import {
+  BsBlockquoteLeft,
+  BsCalendar2Date,
+  BsClipboardCheck,
+} from "react-icons/bs";
 import unionFlagIcon from "../assets/union_jack_icon.png";
 
 const features = [
@@ -23,19 +27,19 @@ const features = [
     text: "Create cover letters using British English.",
   },
   {
-    title: "Avoids AI speak",
-    icon: <BsCpuFill size="1.75em" className="text-muted" />,
-    text: "Avoids common and repetitive AI phrases that stand out as not being genuine.",
+    title: "Tailored for You",
+    icon: <BsBlockquoteLeft size="1.75em" className="text-muted" />,
+    text: "Written in a formal but enthusiastic tone, showing genuine interest in the role.",
   },
   {
-    title: "Featured title",
-    icon: <BsCalendar3 size="1.75em" className="text-muted" />,
-    text: "You can really do something good here and it's going to be great.",
+    title: "Professional but Personal",
+    icon: <BsClipboardCheck size="1.75em" className="text-muted" />,
+    text: "Uses confident, natural language — avoids clichés or overly generic statements.",
   },
   {
     title: "3 free letters/month",
-    icon: <BsHouse size="1.75em" className="text-muted" />,
-    text: "Pay for more if you want them.",
+    icon: <BsCalendar2Date size="1.75em" className="text-muted" />,
+    text: "Subscribe to the premium plan for more letters.",
   },
 ];
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Form, Button, Nav } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Nav, Alert } from "react-bootstrap";
 import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
@@ -129,7 +129,7 @@ export default function CoverLetterGenerator() {
         </Row>
         <LetterGeneratorFeatures></LetterGeneratorFeatures>
         {userDetails && (
-          <Row>
+          <Row className="mb-4">
             <Col className="fst-italic">
               Number of letters used:{" "}
               {user ? (
@@ -149,8 +149,8 @@ export default function CoverLetterGenerator() {
         <Row>
           <Col>
             <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="cvInput">
-                <Form.Label>Enter your CV in here:</Form.Label>
+              <Form.Group className="mb-5" controlId="cvInput">
+                <Form.Label className="lead">Enter your CV in here:</Form.Label>
                 <Form.Control
                   required
                   as="textarea"
@@ -162,8 +162,11 @@ export default function CoverLetterGenerator() {
                   {cvChars} / {maxChars} characters
                 </div>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="jobDescInput">
-                <Form.Label>Enter the job description in here:</Form.Label>
+
+              <Form.Group className="mb-4" controlId="jobDescInput">
+                <Form.Label className="lead">
+                  Enter the job description in here:
+                </Form.Label>
                 <Form.Control
                   required
                   as="textarea"
@@ -192,13 +195,31 @@ export default function CoverLetterGenerator() {
                     </p>
                   </>
                 ) : (
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    disabled={!isValid || loading}
-                  >
-                    {loading ? "Generating..." : "Submit"}
-                  </Button>
+                  <>
+                    {response && (
+                      <div>
+                        <Alert variant="light">
+                          <Alert.Heading>
+                            Scroll down to see cover letter
+                          </Alert.Heading>
+                          <p>
+                            All cover letters are stored in{" "}
+                            <Alert.Link href="/previousLetters">
+                              Letter History
+                            </Alert.Link>
+                          </p>
+                        </Alert>
+                      </div>
+                    )}
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      disabled={!isValid || loading}
+                      className="mt-2"
+                    >
+                      {loading ? "Generating..." : "Submit"}
+                    </Button>
+                  </>
                 )
               ) : (
                 <Button variant="primary" type="submit" disabled>
@@ -208,7 +229,7 @@ export default function CoverLetterGenerator() {
             </Form>
             {response && (
               <div className="mt-4">
-                <h4>Generated Cover Letter:</h4>
+                <h4>Cover Letter:</h4>
                 <p style={{ whiteSpace: "pre-wrap" }}>{response}</p>
               </div>
             )}

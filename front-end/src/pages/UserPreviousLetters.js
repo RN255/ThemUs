@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
 import { Container, Nav } from "react-bootstrap";
+import { BsBlockquoteLeft } from "react-icons/bs";
 
 export default function UserPreviousLetters() {
   // is signed in as user?
@@ -92,14 +93,14 @@ export default function UserPreviousLetters() {
           <>
             {currentItems.length > 0 ? (
               currentItems.map((letter, index) => (
-                <div key={index} className="mb-6 p-4 border rounded shadow">
+                <div key={index} className="mb-5 p-4 border rounded shadow">
                   <h3 className="font-semibold text-lg mb-2">
-                    {letter.jobTitle} @ {letter.company}
+                    <BsBlockquoteLeft size="1.75em" className="text-muted" />
                   </h3>
-                  <p style={{ whiteSpace: "pre-wrap" }}>{letter.content}</p>
-                  <p className="text-sm text-gray-500 mt-2">
-                    Saved on {new Date(letter.createdAt).toLocaleDateString()}
+                  <p className="text-sm fst-italic mt-2 text-success">
+                    Saved on: {new Date(letter.createdAt).toLocaleDateString()}
                   </p>
+                  <p style={{ whiteSpace: "pre-wrap" }}>{letter.content}</p>
                 </div>
               ))
             ) : (

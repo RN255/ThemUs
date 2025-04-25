@@ -19,19 +19,20 @@ const features = [
     image: robotCardOne,
   },
   {
-    title: "Various Options",
-    text: "Tailor your experience to fit your needs with just a few clicks.",
+    title: "Endless Possibilities",
+    text: "Customize your journey in seconds — unlock a world of options and make it truly yours!",
     image: robotCardTwo,
   },
   {
     title: "Continuous improvement",
-    text: "Keep getting better with new innovations and ways of doing things. ",
+    text: "Keep getting better with new innovations and news ways of doing things. ",
     image: robotCardThree,
   },
 ];
 
 const services = [
   {
+    subtitle: "Writing service",
     title: "Cover Letter Creator",
     text: "Write a cover letter in British English using AI.",
     link: "/coverLetterCreator",
@@ -116,7 +117,7 @@ function HomePage() {
           </Row>
         </Container>
       </div>
-      <Row className="my-5 mb-3">
+      <Row className="my-5 mb-3" id="services">
         <h2 className="text-center display-5 fw-bold mb-4">Our services</h2>
       </Row>
 
@@ -135,7 +136,7 @@ function HomePage() {
                 />
                 <Card.Body>
                   <Card.Subtitle className="mb-2 text-muted standardBlueColour">
-                    Card Subtitle
+                    {services.subtitle}
                   </Card.Subtitle>
                   <Card.Title>{services.title}</Card.Title>
                   <Card.Text>{services.text}</Card.Text>
@@ -153,18 +154,32 @@ function HomePage() {
           <Row className="justify-content-center">
             <Col lg={6}>
               <p className="lead mb-4">
-                The world is changing and it shouldn't be something to be
-                concerned about. We're going to be using AI tools more and more
-                as time goes by. At Them Us AI we don't want a conflict. We want
-                to work together with AI for an easier life.
+                The world is evolving — and that's something to embrace, not
+                fear. At Them Us AI, we believe in a future where humans and AI
+                collaborate, not compete. Together, we can unlock new
+                possibilities, simplify the complex, and build a better tomorrow
+                — side by side with the tools that are shaping it.
               </p>
               <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                <Button variant="primary" size="lg" className="px-4 me-sm-3">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="px-4 me-sm-3"
+                  onClick={() => {
+                    document
+                      .getElementById("services")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
                   See services
                 </Button>
-                <Button variant="outline-secondary" size="lg" className="px-4">
+                <Link
+                  to="/info"
+                  className="btn btn-outline-primary px-4 btn-lg"
+                  size="lg"
+                >
                   Learn more
-                </Button>
+                </Link>
               </div>
             </Col>
           </Row>
@@ -202,12 +217,25 @@ function HomePage() {
             you and your life.
           </p>
           <div className="d-grid gap-2 d-md-flex justify-content-md-start">
-            <Button variant="primary" size="lg" className="px-4 me-md-2">
+            <Button
+              variant="primary"
+              size="lg"
+              className="px-4 me-sm-3"
+              onClick={() => {
+                document
+                  .getElementById("services")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               See services
             </Button>
-            <Button variant="outline-secondary" size="lg" className="px-4">
+            <Link
+              to="/info"
+              className="btn btn-outline-primary px-4 btn-lg"
+              size="lg"
+            >
               Learn more
-            </Button>
+            </Link>
           </div>
         </Col>
       </Row>

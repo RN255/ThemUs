@@ -56,22 +56,35 @@ router.post("/generate", requireAuth, async (req, res) => {
 
     // 🔐 Build the prompt securely on the backend
     const prompt = `
-    Write a professional and personalised cover letter tailored to this job description, using the following CV. Use British English spelling and phrasing throughout:
+You are a professional UK-based career writer helping graduates create tailored and persuasive cover letters.
 
-    CV:
-    ${cvText}
+Write a cover letter in response to the following job description and candidate CV.
 
-    Job Description:
-    ${jobDesc}
+Guidelines:
+- Use British English throughout.
+- Start the letter with this sentence:
+  "I would like to apply for..."
+- Write in a formal but enthusiastic tone, showing genuine interest in the role.
+- Use confident, natural language — avoid clichés or overly generic statements.
+- Focus on how the candidate's skills and experience are relevant to the job.
+- Keep it concise (maximum one page), well-structured, and easy to read.
+- End with a confident, polite closing that expresses interest in moving forward.
 
-    The tone should be formal yet enthusiastic. Keep it concise (max one page), and highlight relevant experience. End with a confident closing statement.
-    `;
+Job Description:
+${jobDesc}
 
-    // Generate with OpenAI
+Candidate CV:
+${cvText}
+`;
+
+    const model = user.plan === "premium" ? "gpt-4-turbo" : "gpt-3.5-turbo";
+
     const chatCompletion = await openai.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "gpt-3.5-turbo",
+      model: model,
     });
+
+    console.log(`⏳ Generating with model: ${model}`);
 
     const responseText = chatCompletion.choices[0].message.content;
 

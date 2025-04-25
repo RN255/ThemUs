@@ -71,24 +71,31 @@ export default function PricingCoverLetter() {
             style={{ maxWidth: "20rem", width: "100%" }}
           >
             <Card.Body className="d-flex flex-column">
-              <Card.Title className="standardBlueColour mb-3">Pro</Card.Title>
+              <Card.Title className="standardBlueColour mb-3">
+                Premium
+              </Card.Title>
               <Card.Subtitle className="mb-3 fw-light">
                 If you really need that job and you want a lot of letters
               </Card.Subtitle>
 
               <Card.Title className="pricing-card-title">
-                £2.99
+                £9.99
                 <small className="text-muted fw-light"> / month</small>
               </Card.Title>
               <ul className="list-unstyled mt-3 mb-4">
                 <li>
                   <BsCheck2 size={20} className="me-2" />
-                  100 letters/month
+                  50 letters/month
                 </li>
                 <li>
                   <BsCheck2 size={20} className="me-2" />
                   online letter storage
                 </li>
+                <li>
+                  <BsCheck2 size={20} className="me-2" />
+                  Uses more powerful AI
+                </li>
+
                 <li>
                   <BsCheck2 size={20} className="me-2" />
                   email support

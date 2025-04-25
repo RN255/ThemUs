@@ -1,15 +1,27 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function PaymentSuccess() {
   return (
-    <Container>
-      <div style={{ padding: "2rem" }}>
-        <h1>✅ Payment successful!</h1>
-        <p>
-          Thank you! Your premium access is now active (or will be shortly).
-        </p>
-      </div>
+    <Container className="py-5">
+      <Row className="justify-content-center">
+        <Col>
+          <h1>Payment successful</h1>
+          <p>Your premium account is now active.</p>
+          <p>
+            If you have problems please contact:{" "}
+            <span className="fst-italic">admin@themus.org</span>
+          </p>
+          <p>
+            Click{" "}
+            <Link to="/coverLetterCreator" className="text-primary">
+              here
+            </Link>{" "}
+            to return to the cover letter creator
+          </p>
+        </Col>
+      </Row>
     </Container>
   );
 }

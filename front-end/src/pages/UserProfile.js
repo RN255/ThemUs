@@ -92,7 +92,11 @@ export default function UserProfile() {
                 <Card.Text className="mb-3">
                   Plan: <strong>{userDetails.plan}</strong>
                 </Card.Text>
-
+                {userDetails.plan === "premium" && (
+                  <Card.Text className="mb-3">
+                    Contact email: admin@themus.org
+                  </Card.Text>
+                )}
                 {/* <Button variant="outline-primary" className="mb-2 w-100">
                 Edit Profile
               </Button> */}
@@ -129,12 +133,11 @@ export default function UserProfile() {
                       "Already Cancelling"}
                   </Button>
                 )}
-
-                {status && <p>{status}</p>}
+                {status && <Card.Text className="mt-3">{status}</Card.Text>}
                 {userDetails?.subscriptionStatus === "cancelling" &&
                   userDetails.subscriptionEndsAt &&
                   !isNaN(new Date(userDetails.subscriptionEndsAt)) && (
-                    <p>
+                    <Card.Text className="mt-3">
                       Your subscription will end on{" "}
                       {new Date(
                         userDetails.subscriptionEndsAt
@@ -144,7 +147,7 @@ export default function UserProfile() {
                         day: "numeric",
                       })}
                       .
-                    </p>
+                    </Card.Text>
                   )}
               </Card.Body>
             </Card>
