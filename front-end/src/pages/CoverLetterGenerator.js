@@ -57,7 +57,7 @@ export default function CoverLetterGenerator() {
 
       // ✅ NOW: Save the GPT-generated cover letter to MongoDB
       await axios.post(
-        "https://themus.onrender.com/coverLetters",
+        "https://themus.onrender.com/api/coverLetters",
         {
           userId: user._id, // 👈 Make sure `user` is available in context/state
           content: generatedLetter,

@@ -18,7 +18,7 @@ router.post("/create-checkout-session", ensureAuth, async (req, res) => {
       customer_email: req.user.email,
       line_items: [
         {
-          price: "price_1RGluYHSKShqeXJ2isWkISr0",
+          price: "price_1RIGIrHSKShqeXJ2Bgep72WJ",
           quantity: 1,
         },
       ],

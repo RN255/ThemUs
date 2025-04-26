@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import unionFlagPng from "../assets/united-kingdom.png";
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function ColorSchemesExample() {
   const today = new Intl.DateTimeFormat("en-GB", { dateStyle: "full" }).format(
@@ -29,14 +29,19 @@ function ColorSchemesExample() {
         data-bs-theme="dark"
       >
         <Container className="p-sm-0 p-2">
-          <Navbar.Brand href="/" className="twoPointFiveRem fw-bold pt-0">
+          <Navbar.Brand
+            as={Link}
+            to="/"
+            className="twoPointFiveRem fw-bold pt-0"
+          >
             THEM US <span className="fw-light">AI</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto flex-grow-1 d-flex justify-content-start">
               <Nav.Link
-                href="/coverLetterCreator"
+                as={Link}
+                to="/coverLetterCreator"
                 className="d-inline text-center"
               >
                 Cover Letter Creator
@@ -53,7 +58,7 @@ function ColorSchemesExample() {
             </Nav> */}
 
             <Nav className="flex-grow-1 d-flex justify-content-end align-items-center">
-              <Nav.Link href="/info" className="d-inline">
+              <Nav.Link as={Link} to="/info" className="d-inline">
                 Info
               </Nav.Link>
               <Navbar.Text>|</Navbar.Text>
@@ -67,7 +72,7 @@ function ColorSchemesExample() {
                 <Nav.Link>Log in</Nav.Link>
               ) : user ? (
                 <>
-                  <Nav.Link className="d-inline" href="/userProfile">
+                  <Nav.Link className="d-inline" as={Link} to="/userProfile">
                     Hello, {user.displayName}
                   </Nav.Link>
                   <Navbar.Text>|</Navbar.Text>
@@ -76,7 +81,9 @@ function ColorSchemesExample() {
                   </Nav.Link>
                 </>
               ) : (
-                <Nav.Link href="/loginScreen">Log in</Nav.Link>
+                <Nav.Link as={Link} to="/loginScreen">
+                  Log in
+                </Nav.Link>
               )}
               {/* </Nav> */}
             </Nav>
