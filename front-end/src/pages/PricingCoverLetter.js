@@ -10,7 +10,7 @@ export default function PricingCoverLetter() {
   const handleCheckout = async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:5000/payment/create-checkout-session`,
+        `https://themus.onrender.com/payment/create-checkout-session`,
         {},
         { withCredentials: true }
       );

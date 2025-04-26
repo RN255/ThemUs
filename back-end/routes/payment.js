@@ -26,8 +26,8 @@ router.post("/create-checkout-session", ensureAuth, async (req, res) => {
       metadata: {
         userId: req.user._id.toString(), // Add this to update user later!
       },
-      success_url: "http://localhost:3000/payment-success",
-      cancel_url: "http://localhost:3000/payment-cancel",
+      success_url: "https://www.themus.org/payment-success",
+      cancel_url: "https://www.themus.org/payment-cancel",
     });
 
     res.json({ url: session.url });

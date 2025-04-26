@@ -21,9 +21,12 @@ export default function CoverLetterGenerator() {
       if (!user || !user._id) return; // 👈 wait until user is available
 
       try {
-        const res = await axios.get(`http://localhost:5000/users/${user._id}`, {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          `https://themus.onrender.com/users/${user._id}`,
+          {
+            withCredentials: true,
+          }
+        );
         setUserDetails(res.data); // 👈 no .user unless your route nests it
         console.log(res.data);
       } catch (err) {
@@ -41,7 +44,7 @@ export default function CoverLetterGenerator() {
     try {
       const res = await axios.post(
         // "https://themus.onrender.com/api/gpt/generate",
-        "http://localhost:5000/api/gpt/generate",
+        "https://themus.onrender.com/api/gpt/generate",
         { cvText, jobDesc },
         {
           withCredentials: true, // ✅ Crucial
@@ -54,7 +57,7 @@ export default function CoverLetterGenerator() {
 
       // ✅ NOW: Save the GPT-generated cover letter to MongoDB
       await axios.post(
-        "http://localhost:5000/api/coverLetters",
+        "https://themus.onrender.com/coverLetters",
         {
           userId: user._id, // 👈 Make sure `user` is available in context/state
           content: generatedLetter,

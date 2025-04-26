@@ -19,7 +19,7 @@ router.get(
   (req, res) => {
     console.log("User successfully authenticated:", req.user);
     // res.redirect("https://www.themus.org/"); // Redirect to frontend after login
-    res.redirect("http://localhost:3000/"); // Redirect to frontend after login
+    res.redirect("https://www.themus.org/"); // Redirect to frontend after login
   }
 );
 

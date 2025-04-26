@@ -26,7 +26,7 @@ export default function UserPreviousLetters() {
 
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/coverLetters/user/${user._id}`,
+          `https://themus.onrender.com/api/coverLetters/user/${user._id}`,
           { withCredentials: true }
         );
         setCoverLetters(res.data); // assuming res.data is an array

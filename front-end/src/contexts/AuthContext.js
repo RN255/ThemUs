@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     if (!user) {
       const checkSession = async () => {
         try {
-          const res = await axios.get("http://localhost:5000/auth/me", {
+          const res = await axios.get("https://themus.onrender.com/auth/me", {
             withCredentials: true,
           });
 
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axios.get("http://localhost:5000/auth/logout", {
+      await axios.get("https://themus.onrender.com/auth/logout", {
         withCredentials: true,
       });
     } catch (err) {

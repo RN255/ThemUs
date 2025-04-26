@@ -21,7 +21,7 @@ export default function UserProfile() {
   const handleCancel = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/cancel-subscription",
+        "https://themus.onrender.com/cancel-subscription",
         {},
         { withCredentials: true }
       );
@@ -50,9 +50,12 @@ export default function UserProfile() {
       if (!user || !user._id) return;
 
       try {
-        const res = await axios.get(`http://localhost:5000/users/${user._id}`, {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          `https://themus.onrender.com/users/${user._id}`,
+          {
+            withCredentials: true,
+          }
+        );
         setUserDetails(res.data);
         console.log(res.data);
       } catch (err) {
