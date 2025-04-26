@@ -42,11 +42,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      // secure: true,
-      // sameSite: "none",
-      secure: false, // ✅ allow HTTP during development
-      sameSite: "lax", // ✅ allows cross-site redirect for login flow
-      httpOnly: true,
+      secure: true, // Important for HTTPS
+      sameSite: "none", // Important for cross-origin
+      httpOnly: true, // Good for security
     },
   })
 );
