@@ -49,6 +49,7 @@ router.post(
               letterLimit: 50,
               renewsAt: renewDate,
               subscriptionId,
+              subscriptionStatus: "active",
             },
             { new: true }
           );
