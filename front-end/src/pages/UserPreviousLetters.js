@@ -38,7 +38,7 @@ export default function UserPreviousLetters() {
     };
 
     fetchCoverLetters();
-  }, [user]);
+  }, [user, coverLetters]);
 
   return (
     <Container>

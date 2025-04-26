@@ -10,8 +10,6 @@ import robotCardThree from "../assets/robotCardThree.png";
 import ThemUsScreenshotSmaller from "../assets/ThemUsScreenshotSmaller.jpg";
 import robot_writing from "../assets/robot_writing.png";
 
-import { useAuth } from "../contexts/AuthContext";
-
 const features = [
   {
     title: "Reliable Performance",
@@ -41,9 +39,6 @@ const services = [
 ];
 
 function HomePage() {
-  // is signed in as user?
-  const { user } = useAuth();
-
   return (
     <Container className="py-5 my-5 page-fade-in">
       <Row className="align-items-center">
@@ -189,7 +184,7 @@ function HomePage() {
             <img
               src={ThemUsScreenshotSmaller}
               className="img-fluid border rounded-3 shadow-lg mb-4"
-              alt="Example image"
+              alt="company web page"
               width="700"
               height="500"
               loading="lazy"
