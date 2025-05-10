@@ -2,15 +2,13 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 // import NavDropdown from "react-bootstrap/NavDropdown";
-import unionFlagPng from "../assets/united-kingdom.png";
-import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 
 function ColorSchemesExample() {
-  const today = new Intl.DateTimeFormat("en-GB", { dateStyle: "full" }).format(
-    new Date()
-  );
+  // const today = new Intl.DateTimeFormat("en-GB", { dateStyle: "full" }).format(
+  //   new Date()
+  // );
 
   const { user, loading, logout } = useAuth();
   const navigate = useNavigate();
@@ -45,6 +43,13 @@ function ColorSchemesExample() {
                 className="d-inline text-center"
               >
                 Cover Letter Creator
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/tankLandingPage"
+                className="d-inline text-center"
+              >
+                Tank Landing Page
               </Nav.Link>
             </Nav>
 

@@ -232,3 +232,19 @@ body.modal-open {
 .image-hover-lighten:hover {
   filter: brightness(1.1); /* 1.0 = normal, >1 = lighter */
 }
+
+/* tank landing bg  */
+/* .hero-section {
+  height: calc(100vh - 69px);
+  background-image: url("../assets/IMG_1221.JPEG");
+  background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)),
+    url("../assets/IMG_1221.JPEG");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+} */
