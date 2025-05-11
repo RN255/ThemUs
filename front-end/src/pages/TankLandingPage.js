@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
   Container,
   Row,
@@ -41,6 +41,26 @@ const images = [{ image: landImg1 }, { image: landImg2 }, { image: landImg3 }];
 const images2 = [{ image: landImg4 }, { image: landImg5 }, { image: landImg6 }];
 
 export default function TankLandingPage() {
+  // Collect the email
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("/api/emails", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+      alert(data.message || "Signed up!");
+    } catch (err) {
+      alert("Something went wrong.");
+    }
+  };
+
   return (
     <div>
       <Container>
@@ -48,7 +68,7 @@ export default function TankLandingPage() {
           <Col className="d-flex flex-column">
             <h1 className="standardBlueColour">LUMI</h1>
             <h2 className="fs-5 fst-italic">
-              We are creating a new app to change image sharing social media...
+              We are creating a new app to change image sharing social media.
             </h2>
             <ul className="list-unstyled mt-3">
               <li>
@@ -69,8 +89,8 @@ export default function TankLandingPage() {
               </li>
             </ul>
             <p className="fs-5 fst-italic">
-              Just a photo sharing app for you, your friends, your locality and
-              your world.
+              A photo sharing app for you, your friends, your neighbourhood —
+              and the world.
             </p>
 
             <h2 className="standardBlueColour mt-2">How it works</h2>
@@ -79,8 +99,9 @@ export default function TankLandingPage() {
               No filter, No photoshop
             </h3>
             <p>
-              Users can only take photos through the app. You can't upload from
-              your photo library and you can't edit photos.
+              Photos must be taken through the app. You can't upload from your
+              photo library and you can't edit photos. Just real moments, as
+              they happen.
             </p>
             <h3 className="fs-5 mt-2">
               <BsBan size="1em" className="text-muted me-2" />
@@ -88,22 +109,24 @@ export default function TankLandingPage() {
             </h3>
             <p>
               Users can't comment on photos so you don't have to listen to the
-              negativity. Make your own judgments about the world.
+              negativity. Make your own judgments about the world. LUMI lets the
+              image speak for itself.
             </p>
             <h3 className="fs-5 mt-2">
               <BsGlobe2 size="1em" className="text-muted me-2" />
               No selfies
             </h3>
             <p>
-              Users can only use the main camera. Focus on your experiences and
-              show us what you see.
+              Photos must be taken through the main camera. Focus on your
+              experiences and show us what you see. Show us the world through
+              your eyes.
             </p>
 
             <p className="standardBlueColour fs-4 mt-3 mb-0">
-              Sign up for early access.
+              See the world, unfiltered.{" "}
             </p>
             <p className="standardBlueColour fs-4">
-              We'll contact you when it's ready.
+              Get early access to LUMI when we launch.
             </p>
             <Form>
               <FloatingLabel
@@ -191,15 +214,21 @@ export default function TankLandingPage() {
         </Row>
         <Row className="my-5">
           <p className="standardBlueColour fs-4 mt-2">
-            Sign up for early access.
+            Get early access to LUMI when we launch.
           </p>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <FloatingLabel
               controlId="floatingInput"
               label="Email address"
               className="mb-3"
             >
-              <Form.Control type="email" placeholder="name@example.com" />
+              <Form.Control
+                type="email"
+                placeholder="name@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
               <Form.Text className="text-muted ms-1">
                 We'll never share your email with anyone else.
               </Form.Text>

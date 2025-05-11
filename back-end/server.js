@@ -11,6 +11,8 @@ const commentRoutes = require("./routes/commentRoutes");
 const newsRoutes = require("./routes/newsRoutes");
 require("./config/passport"); // Load Passport config
 const coverLetterRoutes = require("./routes/coverLetters");
+const emailRoutes = require("./routes/emails");
+const rateLimit = require("express-rate-limit");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -59,6 +61,13 @@ app.use("/webhook", require("./routes/webhook"));
 // ✅ Middleware to parse JSON
 app.use(express.json());
 
+// Email protection
+const emailLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute window
+  max: 5, // limit each IP to 5 requests per windowMs
+  message: "Too many signups from this IP. Please try again later.",
+});
+
 // ✅ API Routes
 app.use("/api/entries", entryRoutes);
 app.use("/api/comments", commentRoutes);
@@ -68,6 +77,7 @@ app.use("/payment", require("./routes/payment"));
 app.use("/users", require("./routes/users"));
 app.use("/api/coverLetters", coverLetterRoutes);
 app.use("/cancel-subscription", require("./routes/cancel-subscription"));
+app.use("/api/emails", emailLimiter, emailRoutes);
 
 // ✅ Debug Route to Check Authentication
 app.get("/auth/user", (req, res) => {
