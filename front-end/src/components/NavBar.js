@@ -46,10 +46,10 @@ function ColorSchemesExample() {
               </Nav.Link>
               <Nav.Link
                 as={Link}
-                to="/tankLandingPage"
+                to="/SceneDora"
                 className="d-inline text-center"
               >
-                Tank Landing Page
+                SceneDora
               </Nav.Link>
             </Nav>
 

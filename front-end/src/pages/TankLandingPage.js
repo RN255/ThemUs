@@ -46,17 +46,24 @@ export default function TankLandingPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("📤 Attempting to send email:", email);
 
     try {
-      const res = await fetch("/api/emails", {
+      const res = await fetch("https://themus.onrender.com/api/emails", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
+        credentials: "include", // ✅ Required for mobile sessions
       });
 
+      console.log("✅ Response status:", res.status);
+
       const data = await res.json();
+      console.log("✅ Response body:", data);
+
       alert(data.message || "Signed up!");
     } catch (err) {
+      console.error("❌ Submission error:", err.message);
       alert("Something went wrong.");
     }
   };
@@ -66,7 +73,7 @@ export default function TankLandingPage() {
       <Container>
         <Row className="my-5">
           <Col className="d-flex flex-column">
-            <h1 className="standardBlueColour">LUMI</h1>
+            <h1 className="standardBlueColour">SceneDora</h1>
             <h2 className="fs-5 fst-italic">
               We are creating a new app to change image sharing social media.
             </h2>
@@ -128,13 +135,19 @@ export default function TankLandingPage() {
             <p className="standardBlueColour fs-4">
               Get early access to LUMI when we launch.
             </p>
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <FloatingLabel
                 controlId="floatingInput"
                 label="Email address"
                 className="mb-3"
               >
-                <Form.Control type="email" placeholder="name@example.com" />
+                <Form.Control
+                  type="email"
+                  placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
                 <Form.Text className="text-muted ms-1">
                   We'll never share your email with anyone else.
                 </Form.Text>

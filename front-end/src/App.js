@@ -37,7 +37,7 @@ function App() {
           <Route path="/previousLetters" element={<UserPreviousLetters />} />
           <Route path="/pricingCoverLetter" element={<PricingCoverLetter />} />
           <Route path="/userProfile" element={<UserProfile />} />
-          <Route path="/tankLandingPage" element={<TankLandingPage />} />
+          <Route path="/SceneDora" element={<TankLandingPage />} />
         </Routes>
       </BrowserRouter>
       <Footer></Footer>
