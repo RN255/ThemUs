@@ -30,7 +30,7 @@ mongoose
 // ✅ CORS Configuration (Ensures frontend can send credentials)
 app.use(
   cors({
-    origin: ["https://www.themus.org"],
+    origin: ["https://themus.org", "https://www.themus.org"], // ✅ include both www and non-www
     credentials: true, // Allow cookies and authentication headers
   })
 );
