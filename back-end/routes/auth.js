@@ -48,8 +48,13 @@ router.get("/user", (req, res) => {
 });
 
 router.get("/me", (req, res) => {
+  console.log("🔍 /auth/me called");
+  console.log("🍪 Cookies:", req.headers.cookie);
+  console.log("🧑 req.user:", req.user);
+  console.log("🧠 req.session.passport:", req.session?.passport);
+
   if (req.user) {
-    res.json(req.user); // You can also wrap in { user: req.user } if preferred
+    res.json(req.user);
   } else {
     res.status(401).json({ message: "Not authenticated" });
   }
