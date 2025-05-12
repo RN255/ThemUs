@@ -7,7 +7,7 @@ import heroImage from "../assets/roboComputer.png";
 import robotCardOne from "../assets/robotCardOne.png";
 import robotCardTwo from "../assets/robotCardTwo.png";
 import robotCardThree from "../assets/robotCardThree.png";
-import ThemUsScreenshotSmaller from "../assets/ThemUsScreenshotSmaller.jpg";
+import sceneDoraImg from "../assets/sceneDoraImg.jpg";
 import robot_writing from "../assets/robot_writing.png";
 
 const features = [
@@ -30,10 +30,10 @@ const features = [
 
 const services = [
   {
-    subtitle: "Writing service",
-    title: "Cover Letter Creator",
-    text: "Write a cover letter in British English using AI.",
-    link: "/coverLetterCreator",
+    subtitle: "Photo sharing app",
+    title: "SceneDora",
+    text: "A photo sharing app for you, your friends, your neighbourhood — and the world.",
+    link: "/SceneDora",
     image: robot_writing,
   },
 ];
@@ -46,13 +46,13 @@ function HomePage() {
           md={6}
           className="d-flex flex-column mb-4 mb-md-0 align-items-center"
         >
-          <h1 className="display-4 align-items-center">THEM US AI</h1>
-          <p className="lead">Use AI in a faster, smarter way</p>
+          <h1 className="display-4 align-items-center">THEM US NEXUS</h1>
+          <p className="lead">A smarter way</p>
           <Link
-            to="/coverLetterCreator"
+            to="/SceneDora"
             className="btn btn-outline-primary mt-auto btn-lg"
           >
-            Create a cover letter
+            SceneDora
           </Link>
         </Col>
         <Col md={6}>
@@ -93,7 +93,7 @@ function HomePage() {
             <Col md={6} className="px-4">
               <h2 className="mb-4">Meet Your computerised Assistant</h2>
               <p className="mb-4">
-                Our AI tools are constantly evolving to serve you better.
+                Our services are constantly evolving to serve you better.
                 Whether you're looking to save time, speed up your routine, or
                 just make life a little easier, we're here to help—every step of
                 the way.
@@ -104,7 +104,7 @@ function HomePage() {
             </Col>
             <Col md={6} className="text-center mt-4 mt-md-0 px-4">
               <img
-                src={ThemUsScreenshotSmaller}
+                src={sceneDoraImg}
                 alt="Robot illustration"
                 style={{ maxWidth: "100%", height: "auto" }}
               />
@@ -135,7 +135,7 @@ function HomePage() {
                   </Card.Subtitle>
                   <Card.Title>{services.title}</Card.Title>
                   <Card.Text>{services.text}</Card.Text>
-                  <Button variant="outline-primary w-100">Let's begin</Button>
+                  <Button variant="outline-primary w-100">Learn more</Button>
                 </Card.Body>
               </Card>
             </Link>
@@ -150,8 +150,8 @@ function HomePage() {
             <Col lg={6}>
               <p className="lead mb-4">
                 The world is evolving — and that's something to embrace, not
-                fear. At Them Us AI, we believe in a future where humans and AI
-                collaborate, not compete. Together, we can unlock new
+                fear. At Them Us Nexus, we believe in a future where humans and
+                computers collaborate, not compete. Together, we can unlock new
                 possibilities, simplify the complex, and build a better tomorrow
                 — side by side with the tools that are shaping it.
               </p>
@@ -182,7 +182,7 @@ function HomePage() {
         <div className="overflow-hidden" style={{ maxHeight: "30vh" }}>
           <Container className="px-5">
             <img
-              src={ThemUsScreenshotSmaller}
+              src={sceneDoraImg}
               className="img-fluid border rounded-3 shadow-lg mb-4"
               alt="company web page"
               width="700"

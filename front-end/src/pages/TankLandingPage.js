@@ -133,7 +133,7 @@ export default function TankLandingPage() {
               See the world, unfiltered.{" "}
             </p>
             <p className="standardBlueColour fs-4">
-              Get early access to LUMI when we launch.
+              Get early access to SceneDora when we launch.
             </p>
             <Form onSubmit={handleSubmit}>
               <FloatingLabel
@@ -227,7 +227,7 @@ export default function TankLandingPage() {
         </Row>
         <Row className="my-5">
           <p className="standardBlueColour fs-4 mt-2">
-            Get early access to LUMI when we launch.
+            Get early access to SceneDora when we launch.
           </p>
           <Form onSubmit={handleSubmit}>
             <FloatingLabel

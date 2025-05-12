@@ -6,10 +6,10 @@ export default function Info() {
     <Container className="py-5 page-fade-in">
       <Row className="justify-content-center">
         <Col>
-          <h1 className="blueText">Welcome to Them Us AI</h1>
+          <h1 className="blueText">Welcome to Them Us Nexus</h1>
           <p className="mt-4">
             The world is evolving — and that's something to embrace, not fear.
-            At Them Us AI, we believe in a future where humans and AI
+            At Them Us Nexus, we believe in a future where humans and computers
             collaborate, not compete. Together, we can unlock new possibilities,
             simplify the complex, and build a better tomorrow — side by side
             with the tools that are shaping it.
@@ -31,7 +31,7 @@ export default function Info() {
               </p>
 
               <p>
-                At <strong>Them Us AI</strong>, we value your privacy and are
+                At <strong>Them Us Nexus</strong>, we value your privacy and are
                 committed to protecting your information. This Privacy Policy
                 explains how we collect, use, and store your data when you use
                 our website and services.

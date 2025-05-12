@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container page-fade-in">
         <footer className="d-md-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
           <p className="col-md-4 mb-0 text-center text-md-start">
-            © 2024 Them Us AI
+            © 2024 Them Us Nexus
           </p>
 
           <ul className="nav col-md-4 justify-content-center justify-content-md-end">

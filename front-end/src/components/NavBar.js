@@ -32,18 +32,19 @@ function ColorSchemesExample() {
             to="/"
             className="twoPointFiveRem fw-bold pt-0"
           >
-            THEM US <span className="fw-light">AI</span>
+            THEM US
+            <span className="fw-light"> Nexus</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto flex-grow-1 d-flex justify-content-start">
-              <Nav.Link
+              {/* <Nav.Link
                 as={Link}
                 to="/coverLetterCreator"
                 className="d-inline text-center"
               >
                 Cover Letter Creator
-              </Nav.Link>
+              </Nav.Link> */}
               <Nav.Link
                 as={Link}
                 to="/SceneDora"
@@ -66,14 +67,14 @@ function ColorSchemesExample() {
               <Nav.Link as={Link} to="/info" className="d-inline">
                 Info
               </Nav.Link>
-              <Navbar.Text>|</Navbar.Text>
+              {/* <Navbar.Text>|</Navbar.Text> */}
 
               {/* <Navbar.Text className="d-none d-lg-block">
                 {today}
                 <span className="d-none d-lg-inline mx-2">|</span>
               </Navbar.Text> */}
               {/* <Nav className="minWidth100px text-center"> */}
-              {loading ? (
+              {/* {loading ? (
                 <Nav.Link>Log in</Nav.Link>
               ) : user ? (
                 <>
@@ -89,8 +90,7 @@ function ColorSchemesExample() {
                 <Nav.Link as={Link} to="/loginScreen">
                   Log in
                 </Nav.Link>
-              )}
-              {/* </Nav> */}
+              )} */}
             </Nav>
           </Navbar.Collapse>
         </Container>
