@@ -72,83 +72,76 @@ export default function TankLandingPage() {
   return (
     <div>
       <Container>
-        <Nav variant="underline" defaultActiveKey="/SceneDora">
+        <Nav variant="underline" defaultActiveKey="/SceneDoraJp">
           <Nav.Item>
-            <Nav.Link href="/SceneDora">English</Nav.Link>
+            <Nav.Link href="/SceneDora" className="standardBlueColour">
+              English
+            </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/SceneDoraJp" className="standardBlueColour">
-              日本語
-            </Nav.Link>
+            <Nav.Link href="/SceneDoraJp">日本語</Nav.Link>
           </Nav.Item>
         </Nav>
         <Row className="my-5">
           <Col className="d-flex flex-column">
             <h1 className="standardBlueColour">SceneDora</h1>
             <h2 className="fs-5 fst-italic">
-              We are creating a new app to change image sharing social media.
+              私たちは、画像共有ソーシャルメディアを変える新しいアプリを作っています。
             </h2>
             <ul className="list-unstyled mt-3">
               <li>
                 <BsX size="1.75em" className="text-danger" />
-                No photoshop
+                フォトショップなし
               </li>
               <li>
                 <BsX size="1.75em" className="text-danger" />
-                No filter
+                フィルターなし
               </li>
               <li>
                 <BsX size="1.75em" className="text-danger" />
-                No selfies
+                自撮りなし
               </li>
               <li>
                 <BsX size="1.75em" className="text-danger" />
-                No AI content
+                AIコンテンツなし
               </li>
               <li>
                 <BsX size="1.75em" className="text-danger" />
-                No comments
+                コメントなし
               </li>
             </ul>
             <p className="fs-5 fst-italic">
-              A photo sharing app for you, your friends, your neighbourhood —
-              and the world.
+              これは、あなた、あなたの友達、あなたのご近所、そして世界のための写真共有アプリです。
             </p>
 
-            <h2 className="standardBlueColour mt-2">How it works</h2>
+            <h2 className="standardBlueColour mt-2">仕組み</h2>
             <h3 className="fs-5 mt-3">
               <BsCamera size="1em" className="text-muted me-2" />
-              No filter, No photoshop
+              フィルターなし、フォトショップなし
             </h3>
             <p>
-              Photos must be taken through the app. You can't upload from your
-              photo library and you can't edit photos. Just real moments, as
-              they happen.
+              写真は必ずアプリを通じて撮影します。フォトライブラリからのアップロードや写真の編集はできません。本物の瞬間を、そのままに。
             </p>
             <h3 className="fs-5 mt-2">
               <BsBan size="1em" className="text-muted me-2" />
-              No comments
+              コメントなし
             </h3>
             <p>
-              Users can't comment on photos so you don't have to listen to the
-              negativity. Make your own judgments about the world. LUMI lets the
-              image speak for itself.
+              写真にはコメントできません。だからネガティブな意見を気にする必要はありません。世界についての判断は自分で。SceneDoraでは、写真そのものが語ります。
             </p>
             <h3 className="fs-5 mt-2">
               <BsGlobe2 size="1em" className="text-muted me-2" />
-              No selfies
+              自撮りなし
             </h3>
             <p>
-              Photos must be taken through the main camera. Focus on your
-              experiences and show us what you see. Show us the world through
-              your eyes.
+              写真はメインカメラで撮影します。自分の体験にフォーカスし、見たものを見せてください。あなたの目を通して、世界を見せてください。
             </p>
 
             <p className="standardBlueColour fs-4 mt-3 mb-0">
-              See the world, unfiltered.{" "}
+              フィルターのない世界を見よう。{" "}
             </p>
             <p className="standardBlueColour fs-4">
-              Get early access to SceneDora when we launch.
+              SceneDoraのローンチ時に先行アクセスをゲット。
             </p>
             <Form onSubmit={handleSubmit}>
               <FloatingLabel
@@ -164,12 +157,12 @@ export default function TankLandingPage() {
                   required
                 />
                 <Form.Text className="text-muted ms-1">
-                  We'll never share your email with anyone else.
+                  あなたのメールアドレスを他の誰とも共有することはありません。
                 </Form.Text>
               </FloatingLabel>
 
               <Button variant="primary" type="submit">
-                Sign me up
+                登録する
               </Button>
             </Form>
           </Col>
@@ -220,8 +213,7 @@ export default function TankLandingPage() {
           <Col className="text-center my-5 py-5">
             <h3 className="lead fs-4">
               <em>
-                Take a step back towards the real world. We've been waiting for
-                you...
+                現実の世界に一歩戻ってきてください。私たちはあなたを待っていました…。
               </em>
             </h3>
           </Col>
@@ -242,7 +234,7 @@ export default function TankLandingPage() {
         </Row>
         <Row className="my-5">
           <p className="standardBlueColour fs-4 mt-2">
-            Get early access to SceneDora when we launch.
+            SceneDoraのローンチ時に先行アクセスをゲット。
           </p>
           <Form onSubmit={handleSubmit}>
             <FloatingLabel
@@ -258,12 +250,12 @@ export default function TankLandingPage() {
                 required
               />
               <Form.Text className="text-muted ms-1">
-                We'll never share your email with anyone else.
+                あなたのメールアドレスを他の誰とも共有しません。
               </Form.Text>
             </FloatingLabel>
 
             <Button variant="primary" type="submit">
-              Sign me up
+              登録する
             </Button>
           </Form>
         </Row>

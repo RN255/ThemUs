@@ -17,6 +17,7 @@ import UserPreviousLetters from "./pages/UserPreviousLetters";
 import PricingCoverLetter from "./pages/PricingCoverLetter";
 import UserProfile from "./pages/UserProfile";
 import TankLandingPage from "./pages/TankLandingPage";
+import TankLandingPageJp from "./pages/TankLandingPageJp";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/pricingCoverLetter" element={<PricingCoverLetter />} />
           <Route path="/userProfile" element={<UserProfile />} />
           <Route path="/SceneDora" element={<TankLandingPage />} />
+          <Route path="/SceneDoraJp" element={<TankLandingPageJp />} />
         </Routes>
       </BrowserRouter>
       <Footer></Footer>
