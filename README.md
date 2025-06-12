@@ -1,4 +1,4 @@
-## Project Name: Them US Nexus - AI cover letter cretor (React)  
+## Project Name: Them Us Nexus - AI cover letter cretor (React)  
 
 An AI cover letter creator using GPT API, Google auth for user register and log in, and stripe for payments. 
 
